@@ -46,12 +46,37 @@ extension MainPageViewModel
 
 
 
-
+extension MainPageV{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? DetailV
+        {
+            destinationVC.TakenName = selectedName
+        }
+    }
+}
 
 
 extension MainPageV : UICollectionViewDelegate
 {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if isSearching == false
+        {
+            selectedName = result[indexPath.row].title
+        }
+        else
+        {
+            let text = searchController.searchBar.text
+            
+            for i in 0...result.count-1
+            {
+                if(result[i].title.lowercased()).contains(text!.lowercased())
+                {
+                    selectedName = result[i].title  
+                }
+            }
+        }
+        performSegue(withIdentifier: "toDetailsVC", sender: nil)
+    }
 }
 
 extension MainPageV : UICollectionViewDataSource{
@@ -71,10 +96,9 @@ extension MainPageV : UICollectionViewDataSource{
         
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        print(filter)
         
         if isSearching == false{
-            let x:Int! = userFilter.value(forKey: "filter")! as! Int
+            let x:Int! = userFilter.value(forKey: "filter")! as? Int
             switch  x {
             case 0: // if fiter == 0 it means none
                 

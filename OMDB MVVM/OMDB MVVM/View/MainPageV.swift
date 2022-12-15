@@ -10,6 +10,7 @@ import Kingfisher
 
 class MainPageV: UIViewController{
     
+      var selectedName = ""
       var filter: Int = 0
       let userFilter = UserDefaults.standard
       var isSearching = false
@@ -41,12 +42,6 @@ class MainPageV: UIViewController{
         self.collectionView.reloadData()
     }
    
-    
-   
-    
-    
-    
-  
     
 }
 
