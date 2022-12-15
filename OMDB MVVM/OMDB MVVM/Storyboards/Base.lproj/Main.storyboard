@@ -47,14 +47,13 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="4ri-iT-cnu"/>
                                                         <constraint firstAttribute="height" constant="48" id="bYH-Jg-w0j"/>
-                                                        <constraint firstAttribute="width" constant="154" id="kQj-h5-mr2"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ℹ️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPg-3O-koj">
-                                                    <rect key="frame" x="80" y="318" width="23" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ℹ️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPg-3O-koj">
+                                                    <rect key="frame" x="80" y="318" width="22" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -83,14 +82,42 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nB-sS-3u2">
+                                <rect key="frame" x="220" y="776" width="150" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Language">
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="Language:" destination="qBP-JV-qcy" eventType="touchUpInside" id="8Gj-4o-20a"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBa-JT-NP3">
+                                <rect key="frame" x="16" y="776" width="150" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="bK8-hr-Joz"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Filter">
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="Filter:" destination="qBP-JV-qcy" eventType="touchUpInside" id="cbG-au-4m6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SfB-Er-2L9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="SfB-Er-2L9" firstAttribute="trailing" secondItem="oXE-MK-aVs" secondAttribute="trailing" id="7Ee-kH-AXb"/>
+                            <constraint firstItem="dBa-JT-NP3" firstAttribute="leading" secondItem="et5-kg-mAF" secondAttribute="leadingMargin" id="866-5c-COT"/>
                             <constraint firstItem="oXE-MK-aVs" firstAttribute="top" secondItem="SfB-Er-2L9" secondAttribute="top" id="HYu-Bs-xd5"/>
+                            <constraint firstItem="SfB-Er-2L9" firstAttribute="trailing" secondItem="4nB-sS-3u2" secondAttribute="trailing" constant="23" id="Ito-FO-Hqt"/>
                             <constraint firstItem="oXE-MK-aVs" firstAttribute="leading" secondItem="SfB-Er-2L9" secondAttribute="leading" id="LzQ-26-tFy"/>
+                            <constraint firstItem="dBa-JT-NP3" firstAttribute="top" secondItem="oXE-MK-aVs" secondAttribute="bottom" constant="8" symbolic="YES" id="dKP-7x-8uO"/>
+                            <constraint firstItem="4nB-sS-3u2" firstAttribute="leading" secondItem="dBa-JT-NP3" secondAttribute="trailing" constant="54" id="fVw-Hx-UYY"/>
                             <constraint firstItem="SfB-Er-2L9" firstAttribute="bottom" secondItem="oXE-MK-aVs" secondAttribute="bottom" constant="50" id="i1d-F9-CEv"/>
+                            <constraint firstItem="dBa-JT-NP3" firstAttribute="baseline" secondItem="4nB-sS-3u2" secondAttribute="baseline" id="xbz-tg-SKL"/>
                         </constraints>
                     </view>
                     <connections>
@@ -103,6 +130,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

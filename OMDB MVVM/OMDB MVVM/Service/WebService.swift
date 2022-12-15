@@ -14,4 +14,11 @@ struct WebService
             completion(data.results)
         }
     }
+    
+    func urlRemainder() -> String{
+        let baseURL = "https://api.themoviedb.org/3/discover/movie?"
+        let apiKey = "4c9ecc63a00e441445caed7eb26bed17"
+        
+        return  "\(baseURL)api_key=\(apiKey)"
+    }
 }

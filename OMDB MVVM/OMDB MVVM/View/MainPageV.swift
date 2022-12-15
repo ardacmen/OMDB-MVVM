@@ -10,6 +10,7 @@ import Kingfisher
 
 class MainPageV: UIViewController{
 
+      let mainPageViewModel = MainPageViewModel()
       let service = WebService()
       var result = [Result]()
     
@@ -25,33 +26,20 @@ class MainPageV: UIViewController{
                   self.collectionView.reloadData()
               }
           })
-         
       }
-
-}
-
-
-extension MainPageV : UICollectionViewDelegate
-{
     
-}
-
-extension MainPageV : UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return result.count
+    @IBAction func Filter(_ sender: Any) {
+        
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        cell.name.text = result[indexPath.row].title
+    @IBAction func Language(_ sender: Any) {
         
+        let menu =  mainPageViewModel.languageSelector()
+        self.present(menu, animated: true, completion: nil)
         
-        cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + result[indexPath.row].poster_path ))
-        
-        return cell
     }
-   
-    
     
 }
+
+

@@ -22,6 +22,7 @@
 		306B01AF2945F9C300EC8680 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B01AE2945F9C300EC8680 /* Model.swift */; };
 		306B01B22945F9D000EC8680 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B01B12945F9D000EC8680 /* Extensions.swift */; };
 		306B01B42945FB3A00EC8680 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B01B32945FB3A00EC8680 /* CollectionViewCell.swift */; };
+		30AE6A122946187A00944829 /* MainPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AE6A112946187A00944829 /* MainPageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		306B01AE2945F9C300EC8680 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		306B01B12945F9D000EC8680 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		306B01B32945FB3A00EC8680 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		30AE6A112946187A00944829 /* MainPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 		306B01A82945F98400EC8680 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				30AE6A112946187A00944829 /* MainPageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30AE6A122946187A00944829 /* MainPageViewModel.swift in Sources */,
 				306B01AF2945F9C300EC8680 /* Model.swift in Sources */,
 				306B01B22945F9D000EC8680 /* Extensions.swift in Sources */,
 				306B01AB2945F99D00EC8680 /* MainPageV.swift in Sources */,
