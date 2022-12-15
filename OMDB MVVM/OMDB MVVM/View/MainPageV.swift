@@ -9,15 +9,22 @@ import UIKit
 import Kingfisher
 
 class MainPageV: UIViewController{
-
+    
+      var isSearching = false
       let mainPageViewModel = MainPageViewModel()
       let service = WebService()
       var result = [Result]()
+      var searchedResult = [Result]()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
+   let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
         collectionView.delegate = self
         collectionView.dataSource = self
           service.getCharacters(completion: { data in
@@ -27,6 +34,7 @@ class MainPageV: UIViewController{
               }
           })
       }
+    
     
     @IBAction func Filter(_ sender: Any) {
         
