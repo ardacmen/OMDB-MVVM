@@ -10,6 +10,8 @@ import Kingfisher
 
 class MainPageV: UIViewController{
     
+      var filter: Int = 0
+      let userFilter = UserDefaults.standard
       var isSearching = false
       let mainPageViewModel = MainPageViewModel()
       let service = WebService()
@@ -22,6 +24,7 @@ class MainPageV: UIViewController{
    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
+        userFilter.set(0, forKey: "filter")
         super.viewDidLoad()
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
@@ -34,20 +37,18 @@ class MainPageV: UIViewController{
               }
           })
       }
-    
-    
-    @IBAction func Filter(_ sender: Any) {
-        
+    override func viewWillAppear(_ animated: Bool) {
+        self.collectionView.reloadData()
     }
+   
+    
+   
     
     
-    @IBAction func Language(_ sender: Any) {
-        
-        let menu =  mainPageViewModel.languageSelector()
-        self.present(menu, animated: true, completion: nil)
-        
-    }
+    
+  
     
 }
+
 
 
