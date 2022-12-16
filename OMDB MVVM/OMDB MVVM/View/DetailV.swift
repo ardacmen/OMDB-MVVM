@@ -41,7 +41,7 @@ class DetailV: UIViewController {
                             
                             self.text.text = self.result[i].overview
                             
-                            self.popularity.text = "" + String(self.result[i].popularity)
+                            self.popularity.text = "Popularity in Users " + String(format: "%.1f", self.result[i].popularity * 2 / 1000)
                         }
                     }
               

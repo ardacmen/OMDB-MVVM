@@ -9,6 +9,11 @@ import UIKit
 
 class ProfileV: UIViewController {
 
+    var profileViewModel = ProfileViewModel()
+    @IBAction func languageClicked(_ sender: Any) {
+        var menu = profileViewModel.languageSelector()
+        present(menu, animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

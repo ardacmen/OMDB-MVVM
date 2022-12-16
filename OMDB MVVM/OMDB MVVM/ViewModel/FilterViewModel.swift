@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol IFilterViewModel : AnyObject
 {
@@ -46,4 +47,5 @@ extension FilterViewModel
     }
     
 }
+
 
