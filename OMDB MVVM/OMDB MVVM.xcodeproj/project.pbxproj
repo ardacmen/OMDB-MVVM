@@ -30,6 +30,7 @@
 		30AB692B294B8E9100910642 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB692A294B8E9100910642 /* FilterViewModel.swift */; };
 		30AE6A122946187A00944829 /* MainPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AE6A112946187A00944829 /* MainPageViewModel.swift */; };
 		30BDD866294C8AE70083223D /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30BDD864294C8AE70083223D /* CoreData.xcdatamodeld */; };
+		30BDD868294C93A20083223D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDD867294C93A20083223D /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		30AB692A294B8E9100910642 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		30AE6A112946187A00944829 /* MainPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewModel.swift; sourceTree = "<group>"; };
 		30BDD865294C8AE70083223D /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
+		30BDD867294C93A20083223D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 		306B016D2945F90400EC8680 /* OMDB MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				30BDD86B294C95EA0083223D /* Cells */,
 				30BDD863294C8AD70083223D /* Database */,
 				306B01B02945F9C700EC8680 /* Extensions */,
 				306B01A92945F98900EC8680 /* Service */,
@@ -188,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				306B01AA2945F99D00EC8680 /* MainPageV.swift */,
-				306B01B32945FB3A00EC8680 /* CollectionViewCell.swift */,
 				30AB6924294B8B9600910642 /* ProfileV.swift */,
 				30AB6928294B8E7A00910642 /* FilterV.swift */,
 				309AAC0D294BAF6000904374 /* DetailV.swift */,
@@ -229,6 +231,15 @@
 				30BDD864294C8AE70083223D /* CoreData.xcdatamodeld */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		30BDD86B294C95EA0083223D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				306B01B32945FB3A00EC8680 /* CollectionViewCell.swift */,
+				30BDD867294C93A20083223D /* TableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				309AAC0E294BAF6000904374 /* DetailV.swift in Sources */,
+				30BDD868294C93A20083223D /* TableViewCell.swift in Sources */,
 				30AB692B294B8E9100910642 /* FilterViewModel.swift in Sources */,
 				30BDD866294C8AE70083223D /* CoreData.xcdatamodeld in Sources */,
 				30AE6A122946187A00944829 /* MainPageViewModel.swift in Sources */,

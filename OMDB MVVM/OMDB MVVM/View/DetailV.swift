@@ -21,6 +21,9 @@ class DetailV: UIViewController {
     let mainPageV = MainPageV()
     let service = WebService()
     var result = [Result]()
+    var imageLink = String()
+    var pureVote = Float()
+    var purePopularity = Float()
     override func viewDidLoad() {
         super.viewDidLoad()
         service.getCharacters(completion: { data in
@@ -34,13 +37,15 @@ class DetailV: UIViewController {
                         {
                             
                             self.filmTitle.text = self.result[i].title
-                            
+                            self.imageLink = "https://image.tmdb.org/t/p/w1280" + self.result[i].poster_path
                             self.image.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + self.result[i].poster_path ))
                             
+                            self.pureVote = Float(self.result[i].vote_average)
                             self.vote.text = "User's Vote = " + String(self.result[i].vote_average)
                             
                             self.text.text = self.result[i].overview
                             
+                            self.purePopularity = self.result[i].popularity * 2 / 1000
                             self.popularity.text = "Popularity in Users " + String(format: "%.1f", self.result[i].popularity * 2 / 1000)
                         }
                     }
@@ -56,16 +61,10 @@ class DetailV: UIViewController {
     
 
     
-
+    @IBAction func addButtonClicked(_ sender: Any) {
+                let profilViewModel = ProfileViewModel()
+                profilViewModel.saveData(name: self.filmTitle.text!, overwiev: self.text.text!, popularity: (self.pureVote) , vote: (self.pureVote), image: self.imageLink)
+    }
+    
 }
-/*
- self.filmTitle.text = self.result[self.TakenIndex].title
- 
- self.image.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + self.result[self.TakenIndex].poster_path ))
- 
- self.vote.text = "User's Vote = " + String(self.result[self.TakenIndex].vote_average)
- 
- self.text.text = self.result[self.TakenIndex].overview
- 
- self.popularity.text = "" + String(self.result[self.TakenIndex].popularity)
- */
+
