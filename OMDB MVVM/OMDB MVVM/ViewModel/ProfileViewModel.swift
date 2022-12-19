@@ -33,7 +33,7 @@ extension ProfileViewModel
         
         let turkish = UIAlertAction(title: "Turkish", style: .default, handler: { (fonksiyon:UIAlertAction) -> Void in
             self.defaults.set("TR",forKey: "language")
-           
+            
         })
         
         
@@ -47,15 +47,15 @@ extension ProfileViewModel
 extension ProfileViewModel
 {
     func saveData(name: String, overwiev: String, popularity: Float, vote: Float, image: String) {
-               let appDelegate = UIApplication.shared.delegate as! AppDelegate
-               let context = appDelegate.persistentContainer.viewContext
-              
-               let wishList = NSEntityDescription.insertNewObject(forEntityName: "WishList", into: context)
-               
-               //Attributes
-      
-                let profilV = ProfileV()
-        profilV.getData2()
+        
+        let profilV = ProfileV()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let wishList = NSEntityDescription.insertNewObject(forEntityName: "WishList", into: context)
+        profilV.getDataForCheckArray()
+        //Attributes
+        
+       
         
         if profilV.name.count > 0
         {
@@ -79,14 +79,14 @@ extension ProfileViewModel
                 wishList.setValue(vote, forKey: "vote")
                 wishList.setValue(popularity, forKey: "popularity")
                 wishList.setValue(image, forKey: "image")
-            
-        
-               do {
-                   try context.save()
-                   print("success")
-               } catch {
-                   print("error")
-               }
+                
+                
+                do {
+                    try context.save()
+                    print("success")
+                } catch {
+                    print("error")
+                }
             }
         }
         else
@@ -96,17 +96,17 @@ extension ProfileViewModel
             wishList.setValue(vote, forKey: "vote")
             wishList.setValue(popularity, forKey: "popularity")
             wishList.setValue(image, forKey: "image")
-        
-    
-           do {
-               try context.save()
-               print("success")
-           } catch {
-               print("error")
-           }
+            
+            
+            do {
+                try context.save()
+                print("success")
+            } catch {
+                print("error")
+            }
         }
-      
-      
+        
+        
     }
 }
 

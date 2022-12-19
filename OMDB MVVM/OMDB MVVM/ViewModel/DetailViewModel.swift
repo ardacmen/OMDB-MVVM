@@ -6,16 +6,18 @@
 //
 
 import Foundation
+import UIKit
 
 protocol IDetailViewModel:AnyObject
 {
-    
+  
 }
 class DetailViewModel : IDetailViewModel
 {
-    
+   
+ 
 }
 extension DetailViewModel
 {
-    
+  
 }

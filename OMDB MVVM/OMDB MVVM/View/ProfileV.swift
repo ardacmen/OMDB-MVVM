@@ -33,23 +33,21 @@ class ProfileV: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.images.removeAll(keepingCapacity: false)
         self.name.removeAll(keepingCapacity: false)
         self.overwiev.removeAll(keepingCapacity: false)
         self.vote.removeAll(keepingCapacity: false)
         self.popularity.removeAll(keepingCapacity: false)
+        
         getData()
+        
         tableView.allowsSelection = false
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
         
     }
-    
-    
-    
-    
-    
 }
 
 
@@ -57,74 +55,56 @@ class ProfileV: UIViewController {
 extension ProfileV : UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-           if editingStyle == .delete {
-               
-               let appDelegate = UIApplication.shared.delegate as! AppDelegate
-               let context = appDelegate.persistentContainer.viewContext
-               
-               let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WishList")
-               
-          
-               
-               do {
-               let results = try context.fetch(fetchRequest)
-                   if results.count > 0 {
-                       
-                       for result in results as! [NSManagedObject] {
-                           
-                           if let names = result.value(forKey: "name") as? String {
-                               
-                               if names == name[indexPath.row] {
-                                   context.delete(result)
-                                   name.remove(at: indexPath.row)
-                                   images.remove(at: indexPath.row)
-                                   overwiev.remove(at: indexPath.row)
-                                   vote.remove(at: indexPath.row)
-                                   popularity.remove(at: indexPath.row )
-    
-                                   self.tableView.reloadData()
-                                   
-                                   do {
-                                       try context.save()
-                                       
-                                   } catch {
-                                       print("error")
-                                   }
-                                   
-                                   break
-                                   
-                               }
-                               
-                           }
-                           
-                           
-                       }
-                       
-                       
-                   }
-               } catch {
-                   print("error")
-               }
-               
-               
-               
-               
-           }
-       }
+        if editingStyle == .delete {
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WishList")
+            
+            
+            
+            do {
+                let results = try context.fetch(fetchRequest)
+                if results.count > 0 {
+                    
+                    for result in results as! [NSManagedObject] {
+                        
+                        if let names = result.value(forKey: "name") as? String {
+                            
+                            if names == name[indexPath.row] {
+                                context.delete(result)
+                                name.remove(at: indexPath.row)
+                                images.remove(at: indexPath.row)
+                                overwiev.remove(at: indexPath.row)
+                                vote.remove(at: indexPath.row)
+                                popularity.remove(at: indexPath.row )
+                                
+                                self.tableView.reloadData()
+                                
+                                do {
+                                    try context.save()
+                                } catch {
+                                    print("Delete Error")
+                                }
+                                
+                                break
+                                
+                            }
+                        }
+                    }
+                }
+            } catch {
+                print("error")
+            }
+        }
+    }
 }
 
 extension ProfileV : UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        /*
-         self.name = Array(Set(self.name))
-         self.images = Array(Set(self.images))
-         self.popularity = Array(Set(self.popularity))
-         self.vote = Array(Set(self.vote))
-         self.overwiev = Array(Set(self.overwiev))
-         */
-           
-            return name.count
+        return name.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -141,8 +121,8 @@ extension ProfileV : UITableViewDataSource
 extension ProfileV
 {
     func getData(){
-    
-     
+        
+        
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -187,18 +167,18 @@ extension ProfileV
         }
         
     }
-
+    
 }
 extension ProfileV
 {
-    func getData2(){
-    
-     
+    func getDataForCheckArray(){
+        
+        
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WishList")
+        
         fetchRequest.returnsObjectsAsFaults = false
         
         do {
@@ -225,18 +205,10 @@ extension ProfileV
                     if let popularity = result.value(forKey: "popularity") as? Float {
                         self.popularity.append(popularity)
                     }
-                    
-                    
-          
-                    
                 }
             }
-            
-            
         } catch {
             print("error")
         }
-        
     }
-
 }

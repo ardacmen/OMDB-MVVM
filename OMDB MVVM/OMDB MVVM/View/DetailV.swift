@@ -19,6 +19,7 @@ class DetailV: UIViewController {
     @IBOutlet weak var popularity: UILabel!
     var TakenName = String()
     let mainPageV = MainPageV()
+    let detailViewModel = DetailViewModel()
     let service = WebService()
     var result = [Result]()
     var imageLink = String()
@@ -41,17 +42,36 @@ class DetailV: UIViewController {
                             self.image.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + self.result[i].poster_path ))
                             
                             self.pureVote = Float(self.result[i].vote_average)
+                          
                             self.vote.text = "User's Vote = " + String(self.result[i].vote_average)
                             
                             self.text.text = self.result[i].overview
-                            
+                           
                             self.purePopularity = self.result[i].popularity * 2 / 1000
                             self.popularity.text = "Popularity in Users " + String(format: "%.1f", self.result[i].popularity * 2 / 1000)
+                           
+                        
+                            if self.pureVote <= 2.5 &&  self.pureVote > 0 {
+                                self.vote.backgroundColor = .red
+                            }else if  self.pureVote > 2.5 &&  self.pureVote <= 7.5 {
+                                self.vote.backgroundColor = .yellow
+                            }else{
+                                self.vote.backgroundColor = .green
+                            }
+                            
+                            if  self.purePopularity <= 2.5 &&   self.purePopularity > 0 {
+                                self.popularity.backgroundColor = .red
+                            }else if  self.pureVote > 2.5 &&   self.purePopularity <= 8.0 {
+                                self.popularity.backgroundColor = .yellow
+                            }else{
+                                self.popularity.backgroundColor = .green
+                            }
+                            
                         }
                     }
               
                 }
-               
+              
                 
             }
         })
