@@ -10,43 +10,93 @@ import Kingfisher
 
 class MainPageV: UIViewController{
     
+      @IBOutlet weak var segmentedCotrols: UISegmentedControl!
       var selectedName = ""
       var filter: Int = 0
       let userFilter = UserDefaults.standard
       var isSearching = false
+    
       let mainPageViewModel = MainPageViewModel()
       let service = WebService()
       var result = [Result]()
-      var searchedResult = [Result]()
-    
-    @IBOutlet weak var collectionView: UICollectionView!
+      var resultAfterSearch = [Result]()
     
     
-   let searchController = UISearchController(searchResultsController: nil)
+      @IBOutlet weak var collectionView: UICollectionView!
+      let searchController = UISearchController(searchResultsController: nil)
+    
     
     override func viewDidLoad() {
-        userFilter.set(0, forKey: "filter")
+     
         super.viewDidLoad()
-        searchController.searchResultsUpdater = self
-        navigationItem.searchController = searchController
+      //  overrideUserInterfaceStyle = .light
+        userFilter.set(0, forKey: "filter")
+        configureSearchBar()
+       
+        
         collectionView.delegate = self
         collectionView.dataSource = self
+        
           service.getCharacters(completion: { data in
               DispatchQueue.main.async {
                   self.result = data!
                   self.collectionView.reloadData()
               }
           })
+        segmentedCotrols.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
       }
+    @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        let filterViewModels = FilterViewModel()
+        
+       
+        
+        if sender.selectedSegmentIndex == 0
+        {
+            filterViewModels.voteHL()
+            self.makeAlert(titleInput: "Selected!", messageInput: "Vote -> Highest to Lowest")
+            self.collectionView.reloadData()
+        }else if sender.selectedSegmentIndex == 1
+        {
+            filterViewModels.voteLH()
+            self.makeAlert(titleInput: "Selected!", messageInput: "Vote -> Lowest to Highest")
+            self.collectionView.reloadData()
+        }else if sender.selectedSegmentIndex == 2
+        {
+            filterViewModels.popularityHL()
+            self.makeAlert(titleInput: "Selected!", messageInput: "popularity -> Highest to Lowest")
+            self.collectionView.reloadData()
+        }else
+        {
+            filterViewModels.popularityLH()
+            self.makeAlert(titleInput: "Selected!", messageInput: "popularity -> Lowest to Highest")
+            self.collectionView.reloadData()
+        }
+        
+        
+    }
+   /* bu neden burda anlamadım
     override func viewWillAppear(_ animated: Bool) {
         self.collectionView.reloadData()
     }
+    */
    
+   
+    private func configureSearchBar()
+    {
+        searchController.loadViewIfNeeded()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.enablesReturnKeyAutomatically = false
+        searchController.searchBar.returnKeyType = UIReturnKeyType.done
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
+        searchController.searchBar.placeholder = "Search Movie By Name"
+       
+    }
     
 }
-
-
-
 
 
 
@@ -69,27 +119,24 @@ extension MainPageV : UICollectionViewDelegate
         }
         else
         {
-            let text = searchController.searchBar.text
+         
             
-            for i in 0...result.count-1
-            {
-                if(result[i].title.lowercased()).contains(text!.lowercased())
-                {
-                    selectedName = result[i].title
-                }
-            }
+            selectedName = resultAfterSearch[indexPath.row].title
         }
         performSegue(withIdentifier: "toDetailsVC", sender: nil)
     }
 }
 
 extension MainPageV : UICollectionViewDataSource{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if isSearching == false{
+        if isSearching == false
+        {
             return result.count
         }
-        else{
-            return 1
+        else
+        {
+            return resultAfterSearch.count
         }
     }
     
@@ -195,20 +242,24 @@ extension MainPageV : UICollectionViewDataSource{
             
         
         }else{
+          /*
+           let text = searchController.searchBar.text
           
-            let text = searchController.searchBar.text
-            
-            for i in 0...result.count-1
-            {
-                if(result[i].title.lowercased()).contains(text!.lowercased())
-                {
-                    cell.name.text = result[i].title
-                    cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + result[i].poster_path ))
-                }
-            }
-          
-        }
+           for i in 0...result.count-1
+           {
+               if(result[i].title.lowercased()).contains(text!.lowercased())
+               {
+                   resultAfterSearch.append(contentsOf: result)
+                   cell.name.text = result[i].title
+                   cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + result[i].poster_path ))
+               }
+           }
+           */
+            cell.name.text = resultAfterSearch[indexPath.row].title
+            cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + resultAfterSearch[indexPath.row].poster_path ))
         
+        }
+        cell.imageView.layer.cornerRadius = 20
         return cell
         
     }
@@ -220,13 +271,35 @@ extension MainPageV : UICollectionViewDataSource{
 extension MainPageV: UISearchResultsUpdating
 {
     func updateSearchResults(for searchController: UISearchController) {
-        if searchController.isActive == true{
+        let text = searchController.searchBar.text!
+        if !text.isEmpty
+        {
             isSearching = true
-            collectionView.reloadData()
-        }else{
+            resultAfterSearch.removeAll(keepingCapacity: false)
+            for movie in result
+            {
+                if movie.title.lowercased().contains(text.lowercased())
+                {
+                    resultAfterSearch.append(movie)
+                }
+            }
+            
+        }else
+        {
             isSearching = false
-            collectionView.reloadData()
+            resultAfterSearch.removeAll(keepingCapacity: false)
+            resultAfterSearch = result
         }
+        collectionView.reloadData()
+    }
+}
+
+extension MainPageV : UISearchBarDelegate
+{
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        resultAfterSearch.removeAll(keepingCapacity: false)
+        collectionView.reloadData()
     }
 }
 

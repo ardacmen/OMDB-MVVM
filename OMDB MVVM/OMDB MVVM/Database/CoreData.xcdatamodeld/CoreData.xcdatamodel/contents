@@ -5,6 +5,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="overwiev" optional="YES" attributeType="String"/>
         <attribute name="popularity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="toggle" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="vote" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
 </model>

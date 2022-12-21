@@ -46,8 +46,8 @@ extension ProfileViewModel
 
 extension ProfileViewModel
 {
-    func saveData(name: String, overwiev: String, popularity: Float, vote: Float, image: String) {
-        
+    func saveData( name: String, overwiev: String, popularity: Float, vote: Float, image: String) {
+       
         let profilV = ProfileV()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -74,6 +74,7 @@ extension ProfileViewModel
             }
             if searcher == 0
             {
+            
                 wishList.setValue(name, forKey: "name")
                 wishList.setValue(overwiev, forKey: "overwiev")
                 wishList.setValue(vote, forKey: "vote")
@@ -91,6 +92,7 @@ extension ProfileViewModel
         }
         else
         {
+          
             wishList.setValue(name, forKey: "name")
             wishList.setValue(overwiev, forKey: "overwiev")
             wishList.setValue(vote, forKey: "vote")

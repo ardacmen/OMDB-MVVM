@@ -7,10 +7,21 @@
 
 import UIKit
 import Kingfisher
+import CoreData
 
 class DetailV: UIViewController {
 
    
+    
+  
+    var name = [String]()
+    var toggleResult = Int()
+  
+    @IBOutlet weak var voteLabel: UILabel!
+    @IBOutlet weak var popularityLabel: UILabel!
+    
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
     
     @IBOutlet weak var filmTitle: UILabel!
     @IBOutlet weak var image: UIImageView!
@@ -26,6 +37,32 @@ class DetailV: UIViewController {
     var pureVote = Float()
     var purePopularity = Float()
     override func viewDidLoad() {
+      
+        getData()
+        if self.name.count > 0
+        {
+            for i in 0...self.name.count-1
+            {
+                if TakenName == name[i]
+                {
+                    self.toggleResult = 1
+                    navigationItem.rightBarButtonItem?.title = "♥"
+                    navigationItem.rightBarButtonItem?.isEnabled = false
+                }
+                else
+                {
+                    self.toggleResult = 0
+                    navigationItem.rightBarButtonItem?.title = "♡"
+                }
+            }
+        }else{
+            self.toggleResult = 0
+            navigationItem.rightBarButtonItem?.title = "♡"
+        }
+    
+    
+      
+        configureLabel()
         super.viewDidLoad()
         service.getCharacters(completion: { data in
             DispatchQueue.main.async { [self] in
@@ -40,6 +77,7 @@ class DetailV: UIViewController {
                             self.filmTitle.text = self.result[i].title
                             self.imageLink = "https://image.tmdb.org/t/p/w1280" + self.result[i].poster_path
                             self.image.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + self.result[i].poster_path ))
+                            self.image.layer.cornerRadius = 19
                             
                             self.pureVote = Float(self.result[i].vote_average)
                           
@@ -52,19 +90,25 @@ class DetailV: UIViewController {
                            
                         
                             if self.pureVote <= 2.5 &&  self.pureVote > 0 {
-                                self.vote.backgroundColor = .red
+                                self.voteLabel.textColor = .red
+                                self.voteLabel.backgroundColor = .red
                             }else if  self.pureVote > 2.5 &&  self.pureVote <= 7.5 {
-                                self.vote.backgroundColor = .yellow
+                                self.voteLabel.textColor = .yellow
+                                self.voteLabel.backgroundColor = .yellow
                             }else{
-                                self.vote.backgroundColor = .green
+                                self.voteLabel.textColor = .green
+                                self.voteLabel.backgroundColor = .green
                             }
                             
                             if  self.purePopularity <= 2.5 &&   self.purePopularity > 0 {
-                                self.popularity.backgroundColor = .red
+                                self.popularityLabel.textColor = .red
+                                self.popularityLabel.backgroundColor = .red
                             }else if  self.pureVote > 2.5 &&   self.purePopularity <= 8.0 {
-                                self.popularity.backgroundColor = .yellow
+                                self.popularityLabel.textColor = .yellow
+                                self.popularityLabel.backgroundColor = .yellow
                             }else{
-                                self.popularity.backgroundColor = .green
+                                self.popularityLabel.textColor = .green
+                                self.popularityLabel.backgroundColor = .green
                             }
                             
                         }
@@ -79,12 +123,122 @@ class DetailV: UIViewController {
        
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        getData()
+        if self.name.count > 0
+        {
+            for i in 0...self.name.count-1
+            {
+                if TakenName == name[i]
+                {
+                    self.toggleResult = 1
+                    navigationItem.rightBarButtonItem?.title = "♥"
+                    navigationItem.rightBarButtonItem?.isEnabled = false
+                }
+                else
+                {
+                    self.toggleResult = 0
+                    navigationItem.rightBarButtonItem?.title = "♡"
+                }
+            }
+        }
+        
+    
+    }
+    
     
     @IBAction func addButtonClicked(_ sender: Any) {
-                let profilViewModel = ProfileViewModel()
-                profilViewModel.saveData(name: self.filmTitle.text!, overwiev: self.text.text!, popularity: (self.pureVote) , vote: (self.pureVote), image: self.imageLink)
+        getData()
+   
+        if self.name.count > 0
+        {
+            for i in 0...name.count-1
+            {
+                if self.TakenName == self.name[i]
+                {
+                    self.toggleResult = 0
+                }
+                else
+                {
+                    self.toggleResult = 1
+                    navigationItem.rightBarButtonItem?.title = "♥"
+                    navigationItem.rightBarButtonItem?.isEnabled = false
+                }
+            }
+        }
+        else
+        {
+            self.toggleResult = 1
+        }
+        
+        
+      
+        
+        
+        
+        let profilViewModel = ProfileViewModel()
+        profilViewModel.saveData(name: self.filmTitle.text!, overwiev:self.text.text!, popularity: (self.pureVote) , vote: (self.pureVote), image: self.imageLink)
+        
+      
+  
+    }
+}
+    
+   
+
+extension DetailV
+{
+    private func configureLabel()
+    {
+     
+        self.voteLabel.layer.masksToBounds = true
+        self.voteLabel.layer.cornerRadius = CGRectGetWidth(self.voteLabel.frame)/2
+        self.voteLabel.layer.borderWidth = 1
+        self.voteLabel.layer.borderColor = UIColor.black.cgColor
+     
+       
+        self.popularityLabel.layer.masksToBounds = true
+        self.popularityLabel.layer.cornerRadius = CGRectGetWidth(self.popularityLabel.frame)/2
+        self.popularityLabel.layer.borderWidth = 1
+        self.popularityLabel.layer.borderColor = UIColor.black.cgColor
+    }
+}
+
+
+
+
+
+extension DetailV
+{
+    func getData(){
+        
+        self.name.removeAll(keepingCapacity: false)
+        self.name.removeAll(keepingCapacity: false)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WishList")
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            if results.count > 0 {
+                for result in results as! [NSManagedObject] {
+                    
+                    if let name = result.value(forKey: "name") as? String {
+                        self.name.append(name)
+                    }
+
+                    
+                }
+            }
+            
+            
+        } catch {
+            print("error")
+        }
+        
     }
     
 }
-

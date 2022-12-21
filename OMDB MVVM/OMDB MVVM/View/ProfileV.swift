@@ -33,7 +33,7 @@ class ProfileV: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         self.images.removeAll(keepingCapacity: false)
         self.name.removeAll(keepingCapacity: false)
         self.overwiev.removeAll(keepingCapacity: false)
