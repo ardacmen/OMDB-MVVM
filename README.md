@@ -41,7 +41,7 @@ Here is a demo of OMDB MVVM in action:
 
 
 
-## Screenshots
+## Screenshots and Videos
 
 <p align="center">
   <img src="images/screenshot1.png" width="160" alt="All Films">
