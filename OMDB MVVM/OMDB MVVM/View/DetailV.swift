@@ -23,7 +23,7 @@ class DetailV: UIViewController {
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     
-    @IBOutlet weak var filmTitle: UILabel!
+   
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var vote: UILabel!
     @IBOutlet weak var text: UITextView!
@@ -74,40 +74,35 @@ class DetailV: UIViewController {
                         if self.result[i].title == self.TakenName
                         {
                             
-                            self.filmTitle.text = self.result[i].title
+                          
                             self.imageLink = "https://image.tmdb.org/t/p/w1280" + self.result[i].poster_path
                             self.image.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + self.result[i].poster_path ))
                             self.image.layer.cornerRadius = 19
                             
                             self.pureVote = Float(self.result[i].vote_average)
                           
-                            self.vote.text = "User's Vote = " + String(self.result[i].vote_average)
+                            self.vote.text = "User's Vote  "
+                            self.voteLabel.text = String(self.result[i].vote_average)
                             
                             self.text.text = self.result[i].overview
                            
                             self.purePopularity = self.result[i].popularity * 2 / 1000
-                            self.popularity.text = "Popularity in Users " + String(format: "%.1f", self.result[i].popularity * 2 / 1000)
-                           
+                            self.popularity.text = "Popularity in Users "
+                            self.popularityLabel.text = String(format: "%.1f", self.result[i].popularity * 2 / 1000)
                         
                             if self.pureVote <= 2.5 &&  self.pureVote > 0 {
-                                self.voteLabel.textColor = .red
                                 self.voteLabel.backgroundColor = .red
                             }else if  self.pureVote > 2.5 &&  self.pureVote <= 7.5 {
-                                self.voteLabel.textColor = .yellow
                                 self.voteLabel.backgroundColor = .yellow
                             }else{
-                                self.voteLabel.textColor = .green
                                 self.voteLabel.backgroundColor = .green
                             }
                             
                             if  self.purePopularity <= 2.5 &&   self.purePopularity > 0 {
-                                self.popularityLabel.textColor = .red
                                 self.popularityLabel.backgroundColor = .red
                             }else if  self.pureVote > 2.5 &&   self.purePopularity <= 8.0 {
-                                self.popularityLabel.textColor = .yellow
                                 self.popularityLabel.backgroundColor = .yellow
                             }else{
-                                self.popularityLabel.textColor = .green
                                 self.popularityLabel.backgroundColor = .green
                             }
                             
@@ -177,7 +172,7 @@ class DetailV: UIViewController {
         
         
         let profilViewModel = ProfileViewModel()
-        profilViewModel.saveData(name: self.filmTitle.text!, overwiev:self.text.text!, popularity: (self.pureVote) , vote: (self.pureVote), image: self.imageLink)
+        profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
         
       
   
@@ -195,12 +190,16 @@ extension DetailV
         self.voteLabel.layer.cornerRadius = CGRectGetWidth(self.voteLabel.frame)/2
         self.voteLabel.layer.borderWidth = 1
         self.voteLabel.layer.borderColor = UIColor.black.cgColor
+        self.voteLabel.textColor = .black
      
        
         self.popularityLabel.layer.masksToBounds = true
         self.popularityLabel.layer.cornerRadius = CGRectGetWidth(self.popularityLabel.frame)/2
         self.popularityLabel.layer.borderWidth = 1
         self.popularityLabel.layer.borderColor = UIColor.black.cgColor
+        self.popularityLabel.textColor = .black
+        
+        
     }
 }
 

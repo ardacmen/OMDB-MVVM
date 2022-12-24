@@ -12,7 +12,11 @@ import Kingfisher
 class ProfileV: UIViewController {
     
     var profileViewModel = ProfileViewModel()
-    
+    var selectedName = String()
+    var selectedImage = String()
+    var selectedOverwiev = String()
+    var selectedVote = Float()
+    var selectedPopularity = Float()
     var images = [String]()
     var name = [String]()
     var overwiev = [String]()
@@ -39,10 +43,10 @@ class ProfileV: UIViewController {
         self.overwiev.removeAll(keepingCapacity: false)
         self.vote.removeAll(keepingCapacity: false)
         self.popularity.removeAll(keepingCapacity: false)
-        
+   
         getData()
-        
-        tableView.allowsSelection = false
+        print(self.name)
+        print(self.vote)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
@@ -99,6 +103,34 @@ extension ProfileV : UITableViewDelegate
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        selectedName = name[indexPath.row]
+        selectedVote = vote[indexPath.row]
+        selectedImage = images[indexPath.row]
+        selectedOverwiev = overwiev[indexPath.row]
+        selectedPopularity = popularity[indexPath.row]
+      
+    
+        performSegue(withIdentifier: "toCoreDataDetails", sender: nil)
+        
+    }
+}
+
+extension ProfileV
+{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? CoreDataDetailsViewController
+        {
+            destinationVC.title = selectedName
+            destinationVC.takenName = selectedName
+            destinationVC.takenVote = selectedVote
+            destinationVC.takenImage = selectedImage
+            destinationVC.takenOverwiev = selectedOverwiev
+            destinationVC.takenPopularity = selectedPopularity
+        }
+    }
 }
 
 extension ProfileV : UITableViewDataSource
@@ -145,6 +177,7 @@ extension ProfileV
                     
                     if let vote = result.value(forKey: "vote") as? Float {
                         self.vote.append(vote)
+                      
                     }
                     
                     if let overwiev = result.value(forKey: "overwiev") as? String {

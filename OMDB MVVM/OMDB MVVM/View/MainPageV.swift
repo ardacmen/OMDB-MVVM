@@ -46,40 +46,34 @@ class MainPageV: UIViewController{
         segmentedCotrols.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
       }
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
-        let filterViewModels = FilterViewModel()
-        
+     
        
         
         if sender.selectedSegmentIndex == 0
         {
-            filterViewModels.voteHL()
+            userFilter.set(2, forKey: "filter")
             self.makeAlert(titleInput: "Selected!", messageInput: "Vote -> Highest to Lowest")
             self.collectionView.reloadData()
         }else if sender.selectedSegmentIndex == 1
         {
-            filterViewModels.voteLH()
+            userFilter.set(1, forKey: "filter")
             self.makeAlert(titleInput: "Selected!", messageInput: "Vote -> Lowest to Highest")
             self.collectionView.reloadData()
         }else if sender.selectedSegmentIndex == 2
         {
-            filterViewModels.popularityHL()
+            userFilter.set(4, forKey: "filter")
             self.makeAlert(titleInput: "Selected!", messageInput: "popularity -> Highest to Lowest")
             self.collectionView.reloadData()
         }else
         {
-            filterViewModels.popularityLH()
+            userFilter.set(3, forKey: "filter")
             self.makeAlert(titleInput: "Selected!", messageInput: "popularity -> Lowest to Highest")
             self.collectionView.reloadData()
         }
         
         
     }
-   /* bu neden burda anlamadım
-    override func viewWillAppear(_ animated: Bool) {
-        self.collectionView.reloadData()
-    }
-    */
-   
+
    
     private func configureSearchBar()
     {
@@ -104,6 +98,7 @@ extension MainPageV{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? DetailV
         {
+            destinationVC.title = selectedName
             destinationVC.TakenName = selectedName
         }
     }
@@ -115,6 +110,7 @@ extension MainPageV : UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isSearching == false
         {
+            
             selectedName = result[indexPath.row].title
         }
         else

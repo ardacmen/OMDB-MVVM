@@ -9,18 +9,18 @@
 
 
 protocol IMainPageViewModel:AnyObject {
-    
+
 }
 
 class  MainPageViewModel: IMainPageViewModel
 {
-  
+    
 }
 
 
 extension MainPageViewModel
 {
-  
+ 
 }
 
 

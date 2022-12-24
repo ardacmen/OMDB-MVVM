@@ -80,6 +80,7 @@ extension ProfileViewModel
                 wishList.setValue(vote, forKey: "vote")
                 wishList.setValue(popularity, forKey: "popularity")
                 wishList.setValue(image, forKey: "image")
+                print(vote,popularity)
                 
                 
                 do {
