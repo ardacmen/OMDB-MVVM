@@ -38,10 +38,11 @@ Here is a demo of OMDB MVVM in action:
 ## Screenshots
 
 <p align="center">
-  <img src="images/screenshot1.png" width="200" alt="Screenshot 1">
-  <img src="images/screenshot2.png" width="200" alt="Screenshot 2">
-  <img src="images/screenshot3.png" width="200" alt="Screenshot 3">
-  <img src="images/screenshot4.png" width="200" alt="Screenshot 4">
+  <img src="images/screenshot1.png" width="160" alt="">
+  <img src="images/screenshot2.png" width="160" alt="">
+  <img src="images/screenshot3.png" width="160" alt="">
+  <img src="images/screenshot4.png" width="160" alt="">
+  <img src="images/screenshot5.png" width="160" alt="">
 </p>
 
 <video width="320" height="240" controls>
