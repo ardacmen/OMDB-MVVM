@@ -51,7 +51,4 @@ Here is a demo of OMDB MVVM in action:
   <img src="images/screenshot5.png" width="160" alt="Details">
 </p>
 
-<video width="320" height="240" controls>
-  <source src="images/video.mp4" type="video">
-  Your browser does not support the video tag.
-</video>
+<video src="images/video.mp4"></video>
