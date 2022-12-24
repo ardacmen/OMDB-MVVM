@@ -69,6 +69,8 @@ class MainPageV: UIViewController{
             userFilter.set(3, forKey: "filter")
             self.makeAlert(titleInput: "Selected!", messageInput: "popularity -> Lowest to Highest")
             self.collectionView.reloadData()
+            
+     
         }
         
         
@@ -115,8 +117,6 @@ extension MainPageV : UICollectionViewDelegate
         }
         else
         {
-         
-            
             selectedName = resultAfterSearch[indexPath.row].title
         }
         performSegue(withIdentifier: "toDetailsVC", sender: nil)
@@ -238,19 +238,7 @@ extension MainPageV : UICollectionViewDataSource{
             
         
         }else{
-          /*
-           let text = searchController.searchBar.text
-          
-           for i in 0...result.count-1
-           {
-               if(result[i].title.lowercased()).contains(text!.lowercased())
-               {
-                   resultAfterSearch.append(contentsOf: result)
-                   cell.name.text = result[i].title
-                   cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + result[i].poster_path ))
-               }
-           }
-           */
+   
             cell.name.text = resultAfterSearch[indexPath.row].title
             cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + resultAfterSearch[indexPath.row].poster_path ))
         

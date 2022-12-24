@@ -248,26 +248,26 @@
                                                         <constraint firstAttribute="height" constant="89" id="kTp-RC-8pm"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mt5-my-P6D">
-                                                    <rect key="frame" x="105" y="25" width="197" height="49"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mt5-my-P6D">
+                                                    <rect key="frame" x="105" y="25" width="186" height="49"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="197" id="vFY-ie-vUM"/>
+                                                        <constraint firstAttribute="width" constant="186" id="vFY-ie-vUM"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ℹ️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7GS-EL-cO0">
-                                                    <rect key="frame" x="318" y="39" width="23" height="21"/>
+                                                    <rect key="frame" x="301" y="39" width="23" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="7GS-EL-cO0" firstAttribute="trailing" secondItem="jYr-nG-5Cl" secondAttribute="trailingMargin" id="ATL-R6-MwE"/>
+                                                <constraint firstItem="7GS-EL-cO0" firstAttribute="trailing" secondItem="jYr-nG-5Cl" secondAttribute="trailingMargin" constant="-17" id="ATL-R6-MwE"/>
                                                 <constraint firstItem="Nq4-VD-OmT" firstAttribute="top" secondItem="jYr-nG-5Cl" secondAttribute="topMargin" constant="-6" id="EHF-3y-N8A"/>
-                                                <constraint firstItem="7GS-EL-cO0" firstAttribute="leading" secondItem="Mt5-my-P6D" secondAttribute="trailing" constant="16" id="HrE-Yl-g6q"/>
+                                                <constraint firstItem="7GS-EL-cO0" firstAttribute="leading" secondItem="Mt5-my-P6D" secondAttribute="trailing" constant="10" id="HrE-Yl-g6q"/>
                                                 <constraint firstItem="Mt5-my-P6D" firstAttribute="leading" secondItem="Nq4-VD-OmT" secondAttribute="trailing" constant="8" id="I88-VK-hgf"/>
                                                 <constraint firstItem="Mt5-my-P6D" firstAttribute="centerY" secondItem="7GS-EL-cO0" secondAttribute="centerY" id="ZWc-nJ-i1a"/>
                                                 <constraint firstItem="Nq4-VD-OmT" firstAttribute="centerY" secondItem="jYr-nG-5Cl" secondAttribute="centerY" id="bWe-uA-QQe"/>

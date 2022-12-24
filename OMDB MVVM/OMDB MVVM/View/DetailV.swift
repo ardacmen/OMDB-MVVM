@@ -11,34 +11,30 @@ import CoreData
 
 class DetailV: UIViewController {
 
-   
-    
-  
     var name = [String]()
     var toggleResult = Int()
   
     @IBOutlet weak var voteLabel: UILabel!
     @IBOutlet weak var popularityLabel: UILabel!
-    
     @IBOutlet weak var addButton: UIBarButtonItem!
-    
-    
-   
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var vote: UILabel!
     @IBOutlet weak var text: UITextView!
     @IBOutlet weak var popularity: UILabel!
-    var TakenName = String()
     let mainPageV = MainPageV()
     let detailViewModel = DetailViewModel()
     let service = WebService()
     var result = [Result]()
+    var TakenName = String()
     var imageLink = String()
     var pureVote = Float()
     var purePopularity = Float()
     override func viewDidLoad() {
-      
+        
+        super.viewDidLoad()
         getData()
+        configureLabel()
+        
         if self.name.count > 0
         {
             var searcher = 0
@@ -55,22 +51,16 @@ class DetailV: UIViewController {
             
             if searcher == 0
             {
-                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+                self.returnBlankHeart()
             }
             else
             {
-                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
-                navigationItem.rightBarButtonItem?.isEnabled = false
+                self.returnFilledHeart()
             }
         }else{
-            self.toggleResult = 0
-            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+            self.returnBlankHeart()
         }
     
-    
-      
-        configureLabel()
-        super.viewDidLoad()
         service.getCharacters(completion: { data in
             DispatchQueue.main.async { [self] in
                 self.result = data!
@@ -87,7 +77,6 @@ class DetailV: UIViewController {
                             self.image.layer.cornerRadius = 19
                             
                             self.pureVote = Float(self.result[i].vote_average)
-                          
                             self.vote.text = "User's Vote  "
                             self.voteLabel.text = String(self.result[i].vote_average)
                             
@@ -97,6 +86,8 @@ class DetailV: UIViewController {
                             self.popularity.text = "Popularity in Users "
                             self.popularityLabel.text = String(format: "%.1f", self.result[i].popularity * 2 / 1000)
                         
+                            
+                            
                             if self.pureVote <= 2.5 &&  self.pureVote > 0 {
                                 self.voteLabel.backgroundColor = .red
                             }else if  self.pureVote > 2.5 &&  self.pureVote <= 7.5 {
@@ -112,17 +103,11 @@ class DetailV: UIViewController {
                             }else{
                                 self.popularityLabel.backgroundColor = .green
                             }
-                            
                         }
                     }
-              
                 }
-              
-                
             }
         })
-                                            
-       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,21 +127,16 @@ class DetailV: UIViewController {
             }
             if searcher == 0
             {
-                self.toggleResult = 0
-                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+                self.returnBlankHeart()
             }
             else
             {
-                self.toggleResult = 1
-                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
-                navigationItem.rightBarButtonItem?.isEnabled = false
+                self.returnFilledHeart()
             }
         }
         else
         {
-            self.toggleResult = 0
-            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
-            
+            self.returnBlankHeart()
         }
         
     }
@@ -178,19 +158,14 @@ class DetailV: UIViewController {
             
             if searcher == 1
             {
-                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
-                navigationItem.rightBarButtonItem?.isEnabled = false
+                self.returnFilledHeart()
             }else{
-                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
-                navigationItem.rightBarButtonItem?.isEnabled = false
+                self.returnFilledHeart()
             }
         }
         else
         {
-            self.toggleResult = 1
-            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
-            navigationItem.rightBarButtonItem?.isEnabled = false
-            
+            self.returnFilledHeart()
         }
         
     
@@ -204,27 +179,7 @@ class DetailV: UIViewController {
     
 
 
-extension DetailV
-{
-    private func configureLabel()
-    {
-     
-        self.voteLabel.layer.masksToBounds = true
-        self.voteLabel.layer.cornerRadius = CGRectGetWidth(self.voteLabel.frame)/2
-        self.voteLabel.layer.borderWidth = 1
-        self.voteLabel.layer.borderColor = UIColor.black.cgColor
-        self.voteLabel.textColor = .black
-     
-       
-        self.popularityLabel.layer.masksToBounds = true
-        self.popularityLabel.layer.cornerRadius = CGRectGetWidth(self.popularityLabel.frame)/2
-        self.popularityLabel.layer.borderWidth = 1
-        self.popularityLabel.layer.borderColor = UIColor.black.cgColor
-        self.popularityLabel.textColor = .black
-        
-        
-    }
-}
+
 
 
 
@@ -261,6 +216,34 @@ extension DetailV
             print("error")
         }
         
+    }
+    
+    
+    private func configureLabel()
+    {
+     
+        self.voteLabel.layer.masksToBounds = true
+        self.voteLabel.layer.cornerRadius = CGRectGetWidth(self.voteLabel.frame)/2
+        self.voteLabel.layer.borderWidth = 1
+        self.voteLabel.layer.borderColor = UIColor.black.cgColor
+        self.voteLabel.textColor = .black
+     
+       
+        self.popularityLabel.layer.masksToBounds = true
+        self.popularityLabel.layer.cornerRadius = CGRectGetWidth(self.popularityLabel.frame)/2
+        self.popularityLabel.layer.borderWidth = 1
+        self.popularityLabel.layer.borderColor = UIColor.black.cgColor
+        self.popularityLabel.textColor = .black
+        
+        
+    }
+    
+    func returnBlankHeart(){
+        navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+    }
+    func returnFilledHeart(){
+        navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
 }

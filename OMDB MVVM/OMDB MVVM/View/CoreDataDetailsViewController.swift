@@ -43,7 +43,7 @@ extension CoreDataDetailsViewController
         self.voteDesc.text = "Users Vote for Film "
         self.vote.text = String(self.takenVote)
         self.popularityLabel.text = String(format: "%.1f", self.takenPopularity)
-        self.imageView.kf.setImage(with: URL(string: takenImage ))
+        self.imageView.kf.setImage(with: URL(string: takenImage))
     }
 }
 
@@ -64,11 +64,11 @@ extension CoreDataDetailsViewController
         self.popularityLabel.layer.borderWidth = 1
         self.popularityLabel.layer.borderColor = UIColor.black.cgColor
         
-        if Float(self.vote.text!)! > 0 && Float(self.vote.text!)! < 2.5
+        if takenVote > 0 && takenVote < 2.5
         {
             self.vote.backgroundColor = .red
         }
-        else if Float(self.vote.text!)! >= 2.5 && Float(self.vote.text!)! < 7.5
+        else if takenVote >= 2.5 && takenVote < 7.5
         {
             self.vote.backgroundColor = .yellow
         }
@@ -78,11 +78,11 @@ extension CoreDataDetailsViewController
         }
         
         
-        if Float(self.popularityLabel.text!)! > 0 && Float(self.popularityLabel.text!)! < 2.5
+        if takenPopularity > 0 && takenPopularity < 2.5
         {
             self.popularityLabel.backgroundColor = .red
         }
-        else if Float(self.popularityLabel.text!)! >= 2.5 && Float(self.popularityLabel.text!)! < 7.5
+        else if takenPopularity >= 2.5 && takenPopularity < 7.5
         {
             self.popularityLabel.backgroundColor = .yellow
         }

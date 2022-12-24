@@ -52,8 +52,25 @@ class ProfileV: UIViewController {
         tableView.reloadData()
         
     }
+    
+   
 }
 
+
+extension ProfileV
+{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? CoreDataDetailsViewController
+        {
+            destinationVC.title = selectedName
+            destinationVC.takenName = selectedName
+            destinationVC.takenVote = selectedVote
+            destinationVC.takenImage = selectedImage
+            destinationVC.takenOverwiev = selectedOverwiev
+            destinationVC.takenPopularity = selectedPopularity
+        }
+    }
+}
 
 
 extension ProfileV : UITableViewDelegate
@@ -111,27 +128,15 @@ extension ProfileV : UITableViewDelegate
         selectedImage = images[indexPath.row]
         selectedOverwiev = overwiev[indexPath.row]
         selectedPopularity = popularity[indexPath.row]
-      
+        print(name)
+        print(popularity)
     
         performSegue(withIdentifier: "toCoreDataDetails", sender: nil)
         
     }
 }
 
-extension ProfileV
-{
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationVC = segue.destination as? CoreDataDetailsViewController
-        {
-            destinationVC.title = selectedName
-            destinationVC.takenName = selectedName
-            destinationVC.takenVote = selectedVote
-            destinationVC.takenImage = selectedImage
-            destinationVC.takenOverwiev = selectedOverwiev
-            destinationVC.takenPopularity = selectedPopularity
-        }
-    }
-}
+
 
 extension ProfileV : UITableViewDataSource
 {
@@ -150,8 +155,50 @@ extension ProfileV : UITableViewDataSource
     
     
 }
+
 extension ProfileV
 {
+    func getDataForCheckArray(){
+        
+        
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WishList")
+        
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            if results.count > 0 {
+                for result in results as! [NSManagedObject] {
+                    
+                    if let name = result.value(forKey: "name") as? String {
+                        self.name.append(name)
+                    }
+                    
+                    if let images = result.value(forKey: "image") as? String {
+                        self.images.append(images)
+                    }
+                    
+                    if let vote = result.value(forKey: "vote") as? Float {
+                        self.vote.append(vote)
+                    }
+                    
+                    if let overwiev = result.value(forKey: "overwiev") as? String {
+                        self.overwiev.append(overwiev)
+                    }
+                    
+                    if let popularity = result.value(forKey: "popularity") as? Float {
+                        self.popularity.append(popularity)
+                    }
+                }
+            }
+        } catch {
+            print("error")
+        }
+    }
+    
     func getData(){
         
         
@@ -201,47 +248,6 @@ extension ProfileV
         
     }
     
-}
-extension ProfileV
-{
-    func getDataForCheckArray(){
-        
-        
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WishList")
-        
-        fetchRequest.returnsObjectsAsFaults = false
-        
-        do {
-            let results = try context.fetch(fetchRequest)
-            if results.count > 0 {
-                for result in results as! [NSManagedObject] {
-                    
-                    if let name = result.value(forKey: "name") as? String {
-                        self.name.append(name)
-                    }
-                    
-                    if let images = result.value(forKey: "image") as? String {
-                        self.images.append(images)
-                    }
-                    
-                    if let vote = result.value(forKey: "vote") as? Float {
-                        self.vote.append(vote)
-                    }
-                    
-                    if let overwiev = result.value(forKey: "overwiev") as? String {
-                        self.overwiev.append(overwiev)
-                    }
-                    
-                    if let popularity = result.value(forKey: "popularity") as? Float {
-                        self.popularity.append(popularity)
-                    }
-                }
-            }
-        } catch {
-            print("error")
-        }
-    }
+   
+    
 }
