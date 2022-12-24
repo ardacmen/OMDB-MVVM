@@ -44,14 +44,14 @@ Here is a demo of OMDB MVVM in action:
 ## Screenshots
 
 <p align="center">
-  <img src="images/screenshot1.png" width="160" alt="">
-  <img src="images/screenshot2.png" width="160" alt="">
-  <img src="images/screenshot3.png" width="160" alt="">
-  <img src="images/screenshot4.png" width="160" alt="">
-  <img src="images/screenshot5.png" width="160" alt="">
+  <img src="images/screenshot1.png" width="160" alt="All Films">
+  <img src="images/screenshot2.png" width="160" alt="Favourites">
+  <img src="images/screenshot3.png" width="160" alt="Sorting">
+  <img src="images/screenshot4.png" width="160" alt="Searching">
+  <img src="images/screenshot5.png" width="160" alt="Details">
 </p>
 
 <video width="320" height="240" controls>
-  <source src="images/video" type="video">
+  <source src="images/video.mp4" type="video">
   Your browser does not support the video tag.
 </video>
