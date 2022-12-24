@@ -7,10 +7,16 @@ In addition to these features, OMDB MVVM includes a sorting system that uses the
 ## Features
 
 - Search for movies and TV shows by title
-- View detailed information about a selected movie or TV show, including plot summary, cast, ratings, and more
-- Save favorite movies and TV shows to a "Watchlist" for later viewing
+- View detailed information about a selected movie or TV show, including plot summary, ratings, and more
+- Save favorite movies and TV shows to a "Favourites" for later viewing
 - View the top rated movies and TV shows according to the OMDB API
 - Sort search results using the bubble sort algorithm
+
+## Feature Plan
+- Cast will add!
+- Favourites list share feature will add!
+- Film share feature will add!
+- sort by category will add!
 
 ## Requirements
 
