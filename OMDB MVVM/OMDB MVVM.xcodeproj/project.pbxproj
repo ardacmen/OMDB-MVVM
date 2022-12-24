@@ -127,6 +127,7 @@
 		306B016D2945F90400EC8680 /* OMDB MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				308FEE6E2957474A00D8FC2C /* Images */,
 				30BDD86B294C95EA0083223D /* Cells */,
 				30BDD863294C8AD70083223D /* Database */,
 				306B01B02945F9C700EC8680 /* Extensions */,
@@ -220,6 +221,13 @@
 				30AB6917294B6D5400910642 /* Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		308FEE6E2957474A00D8FC2C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		30BDD863294C8AD70083223D /* Database */ = {

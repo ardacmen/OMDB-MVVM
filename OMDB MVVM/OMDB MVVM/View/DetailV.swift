@@ -41,23 +41,30 @@ class DetailV: UIViewController {
         getData()
         if self.name.count > 0
         {
+            var searcher = 0
             for i in 0...self.name.count-1
             {
                 if TakenName == name[i]
                 {
-                    self.toggleResult = 1
-                    navigationItem.rightBarButtonItem?.title = "♥"
-                    navigationItem.rightBarButtonItem?.isEnabled = false
+                    searcher = 1
+                
                 }
-                else
-                {
-                    self.toggleResult = 0
-                    navigationItem.rightBarButtonItem?.title = "♡"
-                }
+              
+               
+            }
+            
+            if searcher == 0
+            {
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+            }
+            else
+            {
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+                navigationItem.rightBarButtonItem?.isEnabled = false
             }
         }else{
             self.toggleResult = 0
-            navigationItem.rightBarButtonItem?.title = "♡"
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
         }
     
     
@@ -119,26 +126,39 @@ class DetailV: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         getData()
-        if self.name.count > 0
+        
+        if name.count > 0
         {
-            for i in 0...self.name.count-1
+            var searcher = 0
+            for i in 0...name.count-1
             {
                 if TakenName == name[i]
                 {
-                    self.toggleResult = 1
-                    navigationItem.rightBarButtonItem?.title = "♥"
-                    navigationItem.rightBarButtonItem?.isEnabled = false
+                   searcher = 1
                 }
-                else
-                {
-                    self.toggleResult = 0
-                    navigationItem.rightBarButtonItem?.title = "♡"
-                }
+               
+            }
+            if searcher == 0
+            {
+                self.toggleResult = 0
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+            }
+            else
+            {
+                self.toggleResult = 1
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+                navigationItem.rightBarButtonItem?.isEnabled = false
             }
         }
+        else
+        {
+            self.toggleResult = 0
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+            
+        }
         
-    
     }
     
     
@@ -147,39 +167,42 @@ class DetailV: UIViewController {
    
         if self.name.count > 0
         {
+            var searcher = 0
             for i in 0...name.count-1
             {
                 if self.TakenName == self.name[i]
                 {
-                    self.toggleResult = 0
+                    searcher = 1
                 }
-                else
-                {
-                    self.toggleResult = 1
-                    navigationItem.rightBarButtonItem?.title = "♥"
-                    navigationItem.rightBarButtonItem?.isEnabled = false
-                }
+            }
+            
+            if searcher == 1
+            {
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+                navigationItem.rightBarButtonItem?.isEnabled = false
+            }else{
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+                navigationItem.rightBarButtonItem?.isEnabled = false
             }
         }
         else
         {
             self.toggleResult = 1
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            
         }
         
-        
+    
       
-        
-        
         
         let profilViewModel = ProfileViewModel()
         profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
-        
-      
-  
+
     }
 }
     
-   
+
 
 extension DetailV
 {
@@ -241,3 +264,4 @@ extension DetailV
     }
     
 }
+
