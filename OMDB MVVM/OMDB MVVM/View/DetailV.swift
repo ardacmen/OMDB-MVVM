@@ -144,10 +144,9 @@ class DetailV: UIViewController {
     
     @IBAction func addButtonClicked(_ sender: Any) {
         getData()
-   
+        var searcher = 0
         if self.name.count > 0
         {
-            var searcher = 0
             for i in 0...name.count-1
             {
                 if self.TakenName == self.name[i]
@@ -155,24 +154,107 @@ class DetailV: UIViewController {
                     searcher = 1
                 }
             }
-            
-            if searcher == 1
-            {
-                self.returnFilledHeart()
-            }else{
-                self.returnFilledHeart()
-            }
         }
         else
         {
-            self.returnFilledHeart()
+            let profilViewModel = ProfileViewModel()
+            profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
+            returnFilledHeart()
         }
         
     
-      
+        if searcher == 1{
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WishList")
+            
+            
+            
+            do {
+                let results = try context.fetch(fetchRequest)
+                if results.count > 0 {
+                    
+                    for result in results as! [NSManagedObject] {
+                        
+                        if let names = result.value(forKey: "name") as? String {
+                            
+                            if names == self.TakenName {
+                                context.delete(result)
+                                
+                                self.name.removeAll(keepingCapacity: false)
+                                self.name.removeAll(keepingCapacity: false)
+
+                
+                                
+                                do {
+                                    try context.save()
+                                } catch {
+                                    print("Delete Error")
+                                }
+                                
+                                break
+                                
+                            }
+                        }
+                    }
+                }
+            } catch {
+                print("error")
+            }
+            returnBlankHeart()
+        }else{
+            let profilViewModel = ProfileViewModel()
+            profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
+        }
         
-        let profilViewModel = ProfileViewModel()
-        profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
+        
+        /*
+         save
+         let profilViewModel = ProfileViewModel()
+         profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
+         */
+
+        
+        /*
+         delete
+         
+         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+         let context = appDelegate.persistentContainer.viewContext
+         
+         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WishList")
+         
+         
+         
+         do {
+             let results = try context.fetch(fetchRequest)
+             if results.count > 0 {
+                 
+                 for result in results as! [NSManagedObject] {
+                     
+                     if let names = result.value(forKey: "name") as? String {
+                         
+                         if names == name[indexPath.row] {
+                             context.delete(result)
+
+             
+                             
+                             do {
+                                 try context.save()
+                             } catch {
+                                 print("Delete Error")
+                             }
+                             
+                             break
+                             
+                         }
+                     }
+                 }
+             }
+         } catch {
+             print("error")
+         }
+         */
 
     }
 }
@@ -243,7 +325,6 @@ extension DetailV
     }
     func returnFilledHeart(){
         navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
-        navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
 }

@@ -285,25 +285,14 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pf1-Fo-5Iy">
-                                <rect key="frame" x="16" y="783" width="361" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Language"/>
-                                <connections>
-                                    <action selector="languageClicked:" destination="srm-Ld-z6d" eventType="touchUpInside" id="Co9-Wm-A0C"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0bj-7j-ZjY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="pf1-Fo-5Iy" firstAttribute="leading" secondItem="9i1-HN-O0z" secondAttribute="leadingMargin" id="5rK-ef-dpi"/>
+                            <constraint firstItem="Evt-u7-JDE" firstAttribute="leading" secondItem="9i1-HN-O0z" secondAttribute="leadingMargin" id="Cgy-11-DoP"/>
+                            <constraint firstItem="Evt-u7-JDE" firstAttribute="trailing" secondItem="9i1-HN-O0z" secondAttribute="trailingMargin" id="FLX-Ot-uIc"/>
                             <constraint firstItem="0bj-7j-ZjY" firstAttribute="bottom" secondItem="Evt-u7-JDE" secondAttribute="bottom" constant="124" id="Kqf-5j-ljd"/>
-                            <constraint firstItem="Evt-u7-JDE" firstAttribute="top" secondItem="pf1-Fo-5Iy" secondAttribute="bottom" constant="-715" id="Lcb-C8-8yc"/>
-                            <constraint firstItem="Evt-u7-JDE" firstAttribute="leading" secondItem="pf1-Fo-5Iy" secondAttribute="leading" id="QvC-cp-MGf"/>
-                            <constraint firstItem="Evt-u7-JDE" firstAttribute="trailing" secondItem="pf1-Fo-5Iy" secondAttribute="trailing" id="bml-gn-Qt3"/>
-                            <constraint firstItem="pf1-Fo-5Iy" firstAttribute="trailing" secondItem="9i1-HN-O0z" secondAttribute="trailingMargin" id="ltb-AP-TnU"/>
-                            <constraint firstItem="pf1-Fo-5Iy" firstAttribute="top" secondItem="0bj-7j-ZjY" secondAttribute="top" constant="680" id="vCf-9E-xJc"/>
+                            <constraint firstItem="Evt-u7-JDE" firstAttribute="top" secondItem="0bj-7j-ZjY" secondAttribute="top" id="a7h-ea-LxO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Favourites" id="DNw-23-LVA"/>

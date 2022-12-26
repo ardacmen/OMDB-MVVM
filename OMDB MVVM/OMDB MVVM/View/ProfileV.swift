@@ -27,13 +27,15 @@ class ProfileV: UIViewController {
     
     
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBAction func languageClicked(_ sender: Any) {
+   
+    /*
+     @IBAction func languageClicked(_ sender: Any) {
         let menu = profileViewModel.languageSelector()
         present(menu, animated: true, completion: nil)
-        
-    }
-    
+         
+     }
+     */
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()

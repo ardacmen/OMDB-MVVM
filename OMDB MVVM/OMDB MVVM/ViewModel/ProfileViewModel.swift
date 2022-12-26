@@ -12,7 +12,7 @@ import Kingfisher
 
 protocol IProfileViewModel:AnyObject
 {
-    func languageSelector() -> UIAlertController
+ //   func languageSelector() -> UIAlertController
     func saveData(name : String, overwiev : String, popularity: Float, vote : Float , image : String)
 }
 
@@ -22,26 +22,29 @@ class ProfileViewModel:IProfileViewModel
 }
 extension ProfileViewModel
 {
-    func languageSelector() -> UIAlertController{
-        let menu = UIAlertController(title: "Select Language", message: "You Can Choose Your Prefered Language", preferredStyle: .actionSheet)
-        
-        let english = UIAlertAction(title: "English", style: .default, handler: {
-            (fonksiyon:UIAlertAction) -> Void in
-            self.defaults.set("EN",forKey: "language")
-            
-        })
-        
-        let turkish = UIAlertAction(title: "Turkish", style: .default, handler: { (fonksiyon:UIAlertAction) -> Void in
-            self.defaults.set("TR",forKey: "language")
-            
-        })
-        
-        
-        menu.addAction(english)
-        menu.addAction(turkish)
-        
-        return menu
-    }
+    /*
+     func languageSelector() -> UIAlertController{
+         let menu = UIAlertController(title: "Select Language", message: "You Can Choose Your Prefered Language", preferredStyle: .actionSheet)
+         
+         let english = UIAlertAction(title: "English", style: .default, handler: {
+             (fonksiyon:UIAlertAction) -> Void in
+             self.defaults.set("EN",forKey: "language")
+             
+         })
+         
+         let turkish = UIAlertAction(title: "Turkish", style: .default, handler: { (fonksiyon:UIAlertAction) -> Void in
+             self.defaults.set("TR",forKey: "language")
+             
+         })
+         
+         
+         menu.addAction(english)
+         menu.addAction(turkish)
+         
+         return menu
+     }
+     */
+   
 }
 
 extension ProfileViewModel
