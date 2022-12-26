@@ -34,35 +34,19 @@ class DetailV: UIViewController {
         if #available(iOS 14.0, *) {
               overrideUserInterfaceStyle = .light
           }
-        
+      
         super.viewDidLoad()
+        let isAdded = isAdded()
         getData()
         configureLabel()
         
-        if self.name.count > 0
+        if isAdded == true
         {
-            var searcher = 0
-            for i in 0...self.name.count-1
-            {
-                if TakenName == name[i]
-                {
-                    searcher = 1
-                
-                }
-              
-               
-            }
-            
-            if searcher == 0
-            {
-                self.returnBlankHeart()
-            }
-            else
-            {
-                self.returnFilledHeart()
-            }
-        }else{
-            self.returnBlankHeart()
+            returnFilledHeart()
+        }
+        else
+        {
+            returnBlankHeart()
         }
     
         service.getCharacters(completion: { data in
@@ -147,7 +131,38 @@ class DetailV: UIViewController {
     
     
     @IBAction func addButtonClicked(_ sender: Any) {
-        self.name.removeAll(keepingCapacity: false)
+        let isAdded = isAdded()
+        
+        
+        if isAdded == true
+        {
+            detailViewModel.deleteData(nameForDelete: TakenName)
+            returnBlankHeart()
+        }
+        else
+        {
+            let profilViewModel = ProfileViewModel()
+            profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
+            returnFilledHeart()
+        }
+       
+        /*
+         DELETE
+         detailViewModel.deleteData(nameForDelete: TakenName)
+         returnBlankHeart()
+         ADD
+         let profilViewModel = ProfileViewModel()
+         profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
+         returnFilledHeart()
+         */
+    }
+}
+    
+
+extension DetailV
+{
+    func isAdded() -> Bool
+    {
         getData()
         var searcher = 0
         if self.name.count > 0
@@ -156,33 +171,22 @@ class DetailV: UIViewController {
             {
                 if self.TakenName == self.name[i]
                 {
-                    searcher = 1
+                   searcher = 1
                 }
             }
         }
+        
+        
+        if searcher == 1
+        {
+            return true
+        }
         else
         {
-            let profilViewModel = ProfileViewModel()
-            profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
-            returnFilledHeart()
+            return false
         }
-        
-    
-        if searcher == 1{
-            detailViewModel.deleteData(nameForDelete: TakenName)
-            self.name.removeAll(keepingCapacity: false)
-            returnBlankHeart()
-        }else{
-            let profilViewModel = ProfileViewModel()
-            profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
-            returnFilledHeart()
-        }
-        
     }
 }
-    
-
-
 
 
 
@@ -192,10 +196,9 @@ class DetailV: UIViewController {
 extension DetailV
 {
     func getData(){
-        
+        self.name.removeAll(keepingCapacity: false)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WishList")
         fetchRequest.returnsObjectsAsFaults = false
         

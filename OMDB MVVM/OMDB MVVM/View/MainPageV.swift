@@ -25,18 +25,17 @@ class MainPageV: UIViewController{
       let searchController = UISearchController(searchResultsController: nil)
     
     
+    
+    
     override func viewDidLoad() {
      
-        self.navigationItem.rightBarButtonItem?.tintColor = .black
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+      
         
         super.viewDidLoad()
-        if #available(iOS 14.0, *) {
-              overrideUserInterfaceStyle = .light
-          }
+       
         userFilter.set(0, forKey: "filter")
         configureSearchBar()
-       
+        configureView()
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -81,6 +80,16 @@ class MainPageV: UIViewController{
     }
 
    
+    private func configureView(){
+        self.navigationItem.rightBarButtonItem?.tintColor = .black
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        if #available(iOS 14.0, *) {
+              overrideUserInterfaceStyle = .light
+          }
+        
+    }
+    
     private func configureSearchBar()
     {
         searchController.loadViewIfNeeded()

@@ -7,10 +7,13 @@
 
 import UIKit
 import Kingfisher
+import CoreData
 
 class CoreDataDetailsViewController: UIViewController {
 
-    
+    var allName = [String]()
+    var allVote = [Float]()
+    var allPopularity = [Float]()
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var overWiev: UITextView!
@@ -28,6 +31,8 @@ class CoreDataDetailsViewController: UIViewController {
   
     
     override func viewDidLoad() {
+        
+   
         
         if #available(iOS 14.0, *) {
               overrideUserInterfaceStyle = .light
@@ -57,13 +62,13 @@ extension CoreDataDetailsViewController
 {
     private func configureLabel()
     {
-     
+        
         self.vote.layer.masksToBounds = true
         self.vote.layer.cornerRadius = CGRectGetWidth(self.vote.frame)/2
         self.vote.layer.borderWidth = 1
         self.vote.layer.borderColor = UIColor.black.cgColor
-     
-       
+        
+        
         self.popularityLabel.layer.masksToBounds = true
         self.popularityLabel.layer.cornerRadius = CGRectGetWidth(self.popularityLabel.frame)/2
         self.popularityLabel.layer.borderWidth = 1
@@ -96,5 +101,6 @@ extension CoreDataDetailsViewController
             self.popularityLabel.backgroundColor = .green
         }
     }
+
 }
 
