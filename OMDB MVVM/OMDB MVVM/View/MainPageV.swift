@@ -10,12 +10,11 @@ import Kingfisher
 
 class MainPageV: UIViewController{
     
+    
       @IBOutlet weak var segmentedCotrols: UISegmentedControl!
       var selectedName = ""
-      var filter: Int = 0
       let userFilter = UserDefaults.standard
       var isSearching = false
-    
       let mainPageViewModel = MainPageViewModel()
       let service = WebService()
       var result = [Result]()
@@ -28,8 +27,13 @@ class MainPageV: UIViewController{
     
     override func viewDidLoad() {
      
+        self.navigationItem.rightBarButtonItem?.tintColor = .black
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
         super.viewDidLoad()
-      //  overrideUserInterfaceStyle = .light
+        if #available(iOS 14.0, *) {
+              overrideUserInterfaceStyle = .light
+          }
         userFilter.set(0, forKey: "filter")
         configureSearchBar()
        
@@ -82,13 +86,23 @@ class MainPageV: UIViewController{
         searchController.loadViewIfNeeded()
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.enablesReturnKeyAutomatically = false
-        searchController.searchBar.returnKeyType = UIReturnKeyType.done
         self.navigationItem.searchController = searchController
-        self.navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
-        searchController.searchBar.placeholder = "Search Movie By Name"
+      
+                    // TEXT FİELD VİEW
+        
+        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+
+            textfield.backgroundColor = UIColor.white
+            textfield.attributedPlaceholder = NSAttributedString(string: textfield.placeholder ?? "Search", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray])
+
+            textfield.textColor = UIColor.black
+
+            if let leftView = textfield.leftView as? UIImageView {
+                leftView.image = leftView.image?.withRenderingMode(.alwaysTemplate)
+                leftView.tintColor = UIColor.black
+            }
+        }
        
     }
     

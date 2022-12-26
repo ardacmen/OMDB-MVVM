@@ -12,19 +12,21 @@ import Kingfisher
 class ProfileV: UIViewController {
     
     var profileViewModel = ProfileViewModel()
+    
     var selectedName = String()
-    var selectedImage = String()
-    var selectedOverwiev = String()
-    var selectedVote = Float()
-    var selectedPopularity = Float()
-    var images = [String]()
     var name = [String]()
+    
+    var selectedImage = String()
+    var images = [String]()
+    
+    var selectedOverwiev = String()
     var overwiev = [String]()
+    
+    var selectedVote = Float()
     var vote = [Float]()
+    
+    var selectedPopularity = Float()
     var popularity = [Float]()
-    
-    
-    
     
     @IBOutlet weak var tableView: UITableView!
    
@@ -32,7 +34,6 @@ class ProfileV: UIViewController {
      @IBAction func languageClicked(_ sender: Any) {
         let menu = profileViewModel.languageSelector()
         present(menu, animated: true, completion: nil)
-         
      }
      */
    
@@ -40,6 +41,10 @@ class ProfileV: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       
+        if #available(iOS 14.0, *) {
+              overrideUserInterfaceStyle = .light
+          }
+   
         self.images.removeAll(keepingCapacity: false)
         self.name.removeAll(keepingCapacity: false)
         self.overwiev.removeAll(keepingCapacity: false)
@@ -47,8 +52,7 @@ class ProfileV: UIViewController {
         self.popularity.removeAll(keepingCapacity: false)
    
         getData()
-        print(self.name)
-        print(self.vote)
+ 
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
@@ -80,46 +84,14 @@ extension ProfileV : UITableViewDelegate
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let context = appDelegate.persistentContainer.viewContext
+            profileViewModel.deleteData(nameForDelete: name[indexPath.row])
             
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WishList")
-            
-            
-            
-            do {
-                let results = try context.fetch(fetchRequest)
-                if results.count > 0 {
-                    
-                    for result in results as! [NSManagedObject] {
-                        
-                        if let names = result.value(forKey: "name") as? String {
-                            
-                            if names == name[indexPath.row] {
-                                context.delete(result)
-                                name.remove(at: indexPath.row)
-                                images.remove(at: indexPath.row)
-                                overwiev.remove(at: indexPath.row)
-                                vote.remove(at: indexPath.row)
-                                popularity.remove(at: indexPath.row )
-                                
-                                self.tableView.reloadData()
-                                
-                                do {
-                                    try context.save()
-                                } catch {
-                                    print("Delete Error")
-                                }
-                                
-                                break
-                                
-                            }
-                        }
-                    }
-                }
-            } catch {
-                print("error")
-            }
+            name.remove(at: indexPath.row)
+            images.remove(at: indexPath.row)
+            overwiev.remove(at: indexPath.row)
+            vote.remove(at: indexPath.row)
+            popularity.remove(at: indexPath.row )
+            self.tableView.reloadData()
         }
     }
     
@@ -130,8 +102,6 @@ extension ProfileV : UITableViewDelegate
         selectedImage = images[indexPath.row]
         selectedOverwiev = overwiev[indexPath.row]
         selectedPopularity = popularity[indexPath.row]
-        print(name)
-        print(popularity)
     
         performSegue(withIdentifier: "toCoreDataDetails", sender: nil)
         
@@ -202,8 +172,6 @@ extension ProfileV
     }
     
     func getData(){
-        
-        
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext

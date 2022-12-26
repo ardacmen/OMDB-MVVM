@@ -28,6 +28,11 @@ class CoreDataDetailsViewController: UIViewController {
   
     
     override func viewDidLoad() {
+        
+        if #available(iOS 14.0, *) {
+              overrideUserInterfaceStyle = .light
+          }
+        
         super.viewDidLoad()
         configure()
         configureLabel()

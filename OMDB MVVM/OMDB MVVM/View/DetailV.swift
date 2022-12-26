@@ -12,7 +12,6 @@ import CoreData
 class DetailV: UIViewController {
 
     var name = [String]()
-    var toggleResult = Int()
   
     @IBOutlet weak var voteLabel: UILabel!
     @IBOutlet weak var popularityLabel: UILabel!
@@ -30,6 +29,11 @@ class DetailV: UIViewController {
     var pureVote = Float()
     var purePopularity = Float()
     override func viewDidLoad() {
+        
+        
+        if #available(iOS 14.0, *) {
+              overrideUserInterfaceStyle = .light
+          }
         
         super.viewDidLoad()
         getData()
@@ -143,6 +147,7 @@ class DetailV: UIViewController {
     
     
     @IBAction func addButtonClicked(_ sender: Any) {
+        self.name.removeAll(keepingCapacity: false)
         getData()
         var searcher = 0
         if self.name.count > 0
@@ -164,98 +169,15 @@ class DetailV: UIViewController {
         
     
         if searcher == 1{
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let context = appDelegate.persistentContainer.viewContext
-            
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WishList")
-            
-            
-            
-            do {
-                let results = try context.fetch(fetchRequest)
-                if results.count > 0 {
-                    
-                    for result in results as! [NSManagedObject] {
-                        
-                        if let names = result.value(forKey: "name") as? String {
-                            
-                            if names == self.TakenName {
-                                context.delete(result)
-                                
-                                self.name.removeAll(keepingCapacity: false)
-                                self.name.removeAll(keepingCapacity: false)
-
-                
-                                
-                                do {
-                                    try context.save()
-                                } catch {
-                                    print("Delete Error")
-                                }
-                                
-                                break
-                                
-                            }
-                        }
-                    }
-                }
-            } catch {
-                print("error")
-            }
+            detailViewModel.deleteData(nameForDelete: TakenName)
+            self.name.removeAll(keepingCapacity: false)
             returnBlankHeart()
         }else{
             let profilViewModel = ProfileViewModel()
             profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
+            returnFilledHeart()
         }
         
-        
-        /*
-         save
-         let profilViewModel = ProfileViewModel()
-         profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
-         */
-
-        
-        /*
-         delete
-         
-         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-         let context = appDelegate.persistentContainer.viewContext
-         
-         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WishList")
-         
-         
-         
-         do {
-             let results = try context.fetch(fetchRequest)
-             if results.count > 0 {
-                 
-                 for result in results as! [NSManagedObject] {
-                     
-                     if let names = result.value(forKey: "name") as? String {
-                         
-                         if names == name[indexPath.row] {
-                             context.delete(result)
-
-             
-                             
-                             do {
-                                 try context.save()
-                             } catch {
-                                 print("Delete Error")
-                             }
-                             
-                             break
-                             
-                         }
-                     }
-                 }
-             }
-         } catch {
-             print("error")
-         }
-         */
-
     }
 }
     
@@ -270,9 +192,6 @@ class DetailV: UIViewController {
 extension DetailV
 {
     func getData(){
-        
-        self.name.removeAll(keepingCapacity: false)
-        self.name.removeAll(keepingCapacity: false)
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -304,6 +223,8 @@ extension DetailV
     private func configureLabel()
     {
      
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
         self.voteLabel.layer.masksToBounds = true
         self.voteLabel.layer.cornerRadius = CGRectGetWidth(self.voteLabel.frame)/2
         self.voteLabel.layer.borderWidth = 1
