@@ -30,6 +30,8 @@
 		30AE6A122946187A00944829 /* MainPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AE6A112946187A00944829 /* MainPageViewModel.swift */; };
 		30BDD866294C8AE70083223D /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30BDD864294C8AE70083223D /* CoreData.xcdatamodeld */; };
 		30BDD868294C93A20083223D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDD867294C93A20083223D /* TableViewCell.swift */; };
+		30EE7D29295F019500C5840E /* MyCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE7D28295F019500C5840E /* MyCommentViewModel.swift */; };
+		30EE7D2B295F01A300C5840E /* MyCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE7D2A295F01A300C5840E /* MyCommentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		30AE6A112946187A00944829 /* MainPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewModel.swift; sourceTree = "<group>"; };
 		30BDD865294C8AE70083223D /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		30BDD867294C93A20083223D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		30EE7D28295F019500C5840E /* MyCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommentViewModel.swift; sourceTree = "<group>"; };
+		30EE7D2A295F01A300C5840E /* MyCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +197,7 @@
 				30AB6924294B8B9600910642 /* ProfileV.swift */,
 				309AAC0D294BAF6000904374 /* DetailV.swift */,
 				308FEE6A295736B400D8FC2C /* CoreDataDetailsViewController.swift */,
+				30EE7D2A295F01A300C5840E /* MyCommentViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -203,6 +208,7 @@
 				30AE6A112946187A00944829 /* MainPageViewModel.swift */,
 				30AB6926294B8BA500910642 /* ProfileViewModel.swift */,
 				309AAC0F294BAF8000904374 /* DetailViewModel.swift */,
+				30EE7D28295F019500C5840E /* MyCommentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -394,8 +400,10 @@
 				308FEE6B295736B400D8FC2C /* CoreDataDetailsViewController.swift in Sources */,
 				306B01AB2945F99D00EC8680 /* MainPageV.swift in Sources */,
 				306B01B42945FB3A00EC8680 /* CollectionViewCell.swift in Sources */,
+				30EE7D29295F019500C5840E /* MyCommentViewModel.swift in Sources */,
 				30AB6927294B8BA500910642 /* ProfileViewModel.swift in Sources */,
 				306B016F2945F90400EC8680 /* AppDelegate.swift in Sources */,
+				30EE7D2B295F01A300C5840E /* MyCommentViewController.swift in Sources */,
 				306B01AD2945F9BB00EC8680 /* WebService.swift in Sources */,
 				309AAC10294BAF8000904374 /* DetailViewModel.swift in Sources */,
 				30AB6918294B6D5400910642 /* Extensions.swift in Sources */,
@@ -643,13 +651,16 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2LZLJ23WR7;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ardacimen.OMDB-MVVMTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OMDB MVVM.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OMDB MVVM";
 			};
 			name = Debug;
@@ -663,13 +674,16 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2LZLJ23WR7;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ardacimen.OMDB-MVVMTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OMDB MVVM.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OMDB MVVM";
 			};
 			name = Release;
@@ -685,9 +699,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ardacimen.OMDB-MVVMUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = "OMDB MVVM";
 			};
 			name = Debug;
@@ -703,9 +720,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ardacimen.OMDB-MVVMUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = "OMDB MVVM";
 			};
 			name = Release;

@@ -13,6 +13,8 @@ class DetailV: UIViewController {
 
     var name = [String]()
   
+   
+  
     @IBOutlet weak var voteLabel: UILabel!
     @IBOutlet weak var popularityLabel: UILabel!
     @IBOutlet weak var addButton: UIBarButtonItem!
@@ -23,6 +25,8 @@ class DetailV: UIViewController {
     let mainPageV = MainPageV()
     let detailViewModel = DetailViewModel()
     let service = WebService()
+    
+    
     var result = [Result]()
     var TakenName = String()
     var imageLink = String()
@@ -60,19 +64,19 @@ class DetailV: UIViewController {
                         {
                             
                           
-                            self.imageLink = "https://image.tmdb.org/t/p/w1280" + self.result[i].poster_path
-                            self.image.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + self.result[i].poster_path ))
+                            self.imageLink = "https://image.tmdb.org/t/p/w1280" + self.result[i].poster_path!
+                            self.image.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + self.result[i].poster_path! ))
                             self.image.layer.cornerRadius = 19
                             
-                            self.pureVote = Float(self.result[i].vote_average)
+                            self.pureVote = Float(self.result[i].vote_average!)!
                             self.vote.text = "User's Vote  "
-                            self.voteLabel.text = String(self.result[i].vote_average)
+                            self.voteLabel.text = String(self.result[i].vote_average!)
                             
                             self.text.text = self.result[i].overview
                            
-                            self.purePopularity = self.result[i].popularity * 2 / 1000
+                            self.purePopularity = Float(self.result[i].popularity!)! * 2 / 1000
                             self.popularity.text = "Popularity in Users "
-                            self.popularityLabel.text = String(format: "%.1f", self.result[i].popularity * 2 / 1000)
+                            self.popularityLabel.text = String(format: "%.1f",  self.purePopularity)
                         
                             
                             
@@ -129,6 +133,9 @@ class DetailV: UIViewController {
         
     }
     
+   
+    
+   
     
     @IBAction func addButtonClicked(_ sender: Any) {
         let isAdded = isAdded()
@@ -252,4 +259,5 @@ extension DetailV
     }
     
 }
+
 

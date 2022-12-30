@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import CoreData
 
 class MainPageV: UIViewController{
     
@@ -25,13 +26,30 @@ class MainPageV: UIViewController{
       let searchController = UISearchController(searchResultsController: nil)
     
     
+     func deleteAllData(_ entity:String) {
+        
     
+     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+     let managedContext = appDelegate.persistentContainer.viewContext
+     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+     fetchRequest.returnsObjectsAsFaults = false
+
+     do {
+         let arrUsrObj = try managedContext.fetch(fetchRequest)
+         for usrObj in arrUsrObj as! [NSManagedObject] {
+             managedContext.delete(usrObj)
+         }
+        try managedContext.save() //don't forget
+         } catch let error as NSError {
+         print("delete fail--",error)
+       }
+     
+
+     }
     
     override func viewDidLoad() {
-     
-      
-        
         super.viewDidLoad()
+      //  deleteAllData("WishList")
        
         userFilter.set(0, forKey: "filter")
         configureSearchBar()
@@ -40,8 +58,9 @@ class MainPageV: UIViewController{
         collectionView.delegate = self
         collectionView.dataSource = self
         
-          service.getCharacters(completion: { data in
-              DispatchQueue.main.async {
+        service.getCharacters(completion: {  data in
+              DispatchQueue.main.async {  [self] in
+                  print(data!)
                   self.result = data!
                   self.collectionView.reloadData()
               }
@@ -136,11 +155,11 @@ extension MainPageV : UICollectionViewDelegate
         if isSearching == false
         {
             
-            selectedName = result[indexPath.row].title
+            selectedName = result[indexPath.row].title!
         }
         else
         {
-            selectedName = resultAfterSearch[indexPath.row].title
+            selectedName = resultAfterSearch[indexPath.row].title!
         }
         performSegue(withIdentifier: "toDetailsVC", sender: nil)
     }
@@ -173,8 +192,10 @@ extension MainPageV : UICollectionViewDataSource{
             case 0: // if fiter == 0 it means none
                 
                 cell.name.text = result[indexPath.row].title
-                cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + result[indexPath.row].poster_path ))
+              
+               cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + result[indexPath.row].poster_path!))
                 
+               
             case 1: // if filter == 1 it means voteLH
               
               
@@ -182,7 +203,7 @@ extension MainPageV : UICollectionViewDataSource{
                    while (n > 0) {
                        var lastModifiedIndex = 0
                        for currentIndex in 1..<n {
-                           if result[currentIndex - 1].vote_average > result[currentIndex].vote_average {
+                           if result[currentIndex - 1].vote_average! > result[currentIndex].vote_average! {
                                let temp = result[currentIndex - 1]
                                result[currentIndex - 1] = result[currentIndex]
                                result[currentIndex] = temp
@@ -192,7 +213,7 @@ extension MainPageV : UICollectionViewDataSource{
                        n = lastModifiedIndex
                    }
                 cell.name.text = result[indexPath.row].title
-                cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + result[indexPath.row].poster_path ))
+                cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + result[indexPath.row].poster_path! ))
                
             case 2:
                 
@@ -201,7 +222,7 @@ extension MainPageV : UICollectionViewDataSource{
                    while (n > 0) {
                        var lastModifiedIndex = 0
                        for currentIndex in 1..<n {
-                           if result[currentIndex - 1].vote_average < result[currentIndex].vote_average {
+                           if result[currentIndex - 1].vote_average! < result[currentIndex].vote_average! {
                                let temp = result[currentIndex - 1]
                                result[currentIndex - 1] = result[currentIndex]
                                result[currentIndex] = temp
@@ -211,7 +232,7 @@ extension MainPageV : UICollectionViewDataSource{
                        n = lastModifiedIndex
                    }
                 cell.name.text = result[indexPath.row].title
-                cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + result[indexPath.row].poster_path ))
+                cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + result[indexPath.row].poster_path! ))
                 
                 
             case 3:
@@ -221,7 +242,7 @@ extension MainPageV : UICollectionViewDataSource{
                    while (n > 0) {
                        var lastModifiedIndex = 0
                        for currentIndex in 1..<n {
-                           if result[currentIndex - 1].popularity > result[currentIndex].popularity {
+                           if result[currentIndex - 1].popularity! > result[currentIndex].popularity! {
                                let temp = result[currentIndex - 1]
                                result[currentIndex - 1] = result[currentIndex]
                                result[currentIndex] = temp
@@ -232,7 +253,7 @@ extension MainPageV : UICollectionViewDataSource{
                        n = lastModifiedIndex
                    }
                 cell.name.text = result[indexPath.row].title
-                cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + result[indexPath.row].poster_path ))
+                cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + result[indexPath.row].poster_path! ))
                 
                 
             case 4:
@@ -242,7 +263,7 @@ extension MainPageV : UICollectionViewDataSource{
                    while (n > 0) {
                        var lastModifiedIndex = 0
                        for currentIndex in 1..<n {
-                           if result[currentIndex - 1].popularity < result[currentIndex].popularity {
+                           if result[currentIndex - 1].popularity! < result[currentIndex].popularity! {
                                let temp = result[currentIndex - 1]
                                result[currentIndex - 1] = result[currentIndex]
                                result[currentIndex] = temp
@@ -252,7 +273,7 @@ extension MainPageV : UICollectionViewDataSource{
                        n = lastModifiedIndex
                    }
                 cell.name.text = result[indexPath.row].title
-                cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + result[indexPath.row].poster_path ))
+                cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + result[indexPath.row].poster_path! ))
                 
                 
             default:
@@ -263,7 +284,7 @@ extension MainPageV : UICollectionViewDataSource{
         }else{
    
             cell.name.text = resultAfterSearch[indexPath.row].title
-            cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + resultAfterSearch[indexPath.row].poster_path ))
+            cell.imageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + resultAfterSearch[indexPath.row].poster_path! ))
         
         }
         cell.imageView.layer.cornerRadius = 20
@@ -285,7 +306,7 @@ extension MainPageV: UISearchResultsUpdating
             resultAfterSearch.removeAll(keepingCapacity: false)
             for movie in result
             {
-                if movie.title.lowercased().contains(text.lowercased())
+                if movie.title!.lowercased().contains(text.lowercased())
                 {
                     resultAfterSearch.append(movie)
                 }

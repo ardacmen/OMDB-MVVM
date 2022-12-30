@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -384,19 +385,113 @@
                             <constraint firstItem="kSY-9X-0Pd" firstAttribute="top" secondItem="Vso-av-h8n" secondAttribute="bottom" constant="8" symbolic="YES" id="yUQ-7W-TPE"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Y8q-8e-ERD"/>
+                    <navigationItem key="navigationItem" id="Y8q-8e-ERD">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="compose" id="bz5-5r-bNf">
+                            <color key="tintColor" name="AccentColor"/>
+                            <connections>
+                                <action selector="addCommentClicked:" destination="uKc-pS-r8J" id="1lF-CJ-UQs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="addComment" destination="bz5-5r-bNf" id="mll-G4-mW5"/>
                         <outlet property="imageView" destination="lmQ-yp-c2K" id="8Iz-VR-Szg"/>
                         <outlet property="overWiev" destination="cMx-0e-P1c" id="OYE-q0-mvo"/>
                         <outlet property="popularitDesc" destination="kSY-9X-0Pd" id="9oB-ek-ChU"/>
                         <outlet property="popularityLabel" destination="3gv-B7-zq0" id="5Up-K1-b42"/>
                         <outlet property="vote" destination="VUG-lN-3XE" id="9Ii-MV-20v"/>
                         <outlet property="voteDesc" destination="Vso-av-h8n" id="gB7-DC-Su3"/>
+                        <segue destination="1os-Hh-pHC" kind="show" identifier="toMyComment" id="TRS-Yh-Dzr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ud-ue-qTY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3720" y="661"/>
+        </scene>
+        <!--My Comment View Controller-->
+        <scene sceneID="KUH-KE-INp">
+            <objects>
+                <viewController id="1os-Hh-pHC" customClass="MyCommentViewController" customModule="OMDB_MVVM" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jZg-GA-TlY">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ba-Vu-WYl">
+                                <rect key="frame" x="16" y="747" width="361" height="71"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="43t-p2-mPy"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="SAVE"/>
+                                <connections>
+                                    <action selector="saveButtonClicked:" destination="1os-Hh-pHC" eventType="touchUpInside" id="y38-JZ-5pD"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Comment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yd2-PY-JeJ">
+                                <rect key="frame" x="16" y="130" width="361" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="RY3-rT-h14"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="Your Vote" adjustsFontSizeToFit="NO" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Qel-BS-Tjv">
+                                <rect key="frame" x="16" y="486" width="361" height="34"/>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Vote ?/10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQF-WQ-IOt">
+                                <rect key="frame" x="16" y="444" width="361" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="dMV-40-pel"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m2z-5Q-pfg">
+                                <rect key="frame" x="16" y="159" width="361" height="243"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="243" id="hIh-tz-9BC"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zvG-In-MjL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="qQF-WQ-IOt" firstAttribute="top" secondItem="m2z-5Q-pfg" secondAttribute="bottom" constant="42" id="4bL-8M-jOy"/>
+                            <constraint firstItem="m2z-5Q-pfg" firstAttribute="trailing" secondItem="qQF-WQ-IOt" secondAttribute="trailing" id="EZU-XB-KDg"/>
+                            <constraint firstItem="qQF-WQ-IOt" firstAttribute="leading" secondItem="Qel-BS-Tjv" secondAttribute="leading" id="FZv-8i-HMh"/>
+                            <constraint firstItem="m2z-5Q-pfg" firstAttribute="leading" secondItem="qQF-WQ-IOt" secondAttribute="leading" id="NVx-pK-fvR"/>
+                            <constraint firstItem="Qel-BS-Tjv" firstAttribute="top" secondItem="qQF-WQ-IOt" secondAttribute="bottom" constant="21" id="PJn-Bn-HWP"/>
+                            <constraint firstItem="Qel-BS-Tjv" firstAttribute="leading" secondItem="0ba-Vu-WYl" secondAttribute="leading" id="cnL-0f-IIa"/>
+                            <constraint firstItem="qQF-WQ-IOt" firstAttribute="trailing" secondItem="Qel-BS-Tjv" secondAttribute="trailing" id="dHQ-Ss-Era"/>
+                            <constraint firstItem="m2z-5Q-pfg" firstAttribute="trailing" secondItem="yd2-PY-JeJ" secondAttribute="trailing" id="eVh-T0-5no"/>
+                            <constraint firstItem="m2z-5Q-pfg" firstAttribute="top" secondItem="yd2-PY-JeJ" secondAttribute="bottom" constant="8" id="hE1-es-hOl"/>
+                            <constraint firstItem="yd2-PY-JeJ" firstAttribute="leading" secondItem="jZg-GA-TlY" secondAttribute="leadingMargin" id="hjh-yT-a9E"/>
+                            <constraint firstItem="Qel-BS-Tjv" firstAttribute="trailing" secondItem="0ba-Vu-WYl" secondAttribute="trailing" id="nYE-Av-2if"/>
+                            <constraint firstItem="yd2-PY-JeJ" firstAttribute="top" secondItem="zvG-In-MjL" secondAttribute="top" constant="27" id="ncf-AH-5Ab"/>
+                            <constraint firstItem="yd2-PY-JeJ" firstAttribute="trailing" secondItem="jZg-GA-TlY" secondAttribute="trailingMargin" id="o69-ds-ftL"/>
+                            <constraint firstItem="0ba-Vu-WYl" firstAttribute="bottom" secondItem="zvG-In-MjL" secondAttribute="bottom" id="oWm-HJ-L9j"/>
+                            <constraint firstItem="m2z-5Q-pfg" firstAttribute="leading" secondItem="yd2-PY-JeJ" secondAttribute="leading" id="zfN-3M-3wx"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="n1k-C0-Ht8"/>
+                    <connections>
+                        <outlet property="myCommentTextField" destination="m2z-5Q-pfg" id="Mng-Db-pdC"/>
+                        <outlet property="yourCommentLabel" destination="yd2-PY-JeJ" id="fod-dX-iUa"/>
+                        <outlet property="yourVoteLabel" destination="qQF-WQ-IOt" id="0L7-lg-EGs"/>
+                        <outlet property="yourVoteTextField" destination="Qel-BS-Tjv" id="zjx-92-Khe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lOy-s5-0kC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4901.5267175572517" y="659.85915492957747"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UmX-NR-Ncc">
@@ -419,6 +514,9 @@
     </scenes>
     <resources>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

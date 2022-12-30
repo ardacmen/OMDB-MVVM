@@ -85,7 +85,8 @@ extension ProfileV : UITableViewDelegate
         if editingStyle == .delete {
             
             profileViewModel.deleteData(nameForDelete: name[indexPath.row])
-            
+            let myCommentViewController = MyCommentViewController()
+            myCommentViewController.checkAndDelete(checkName: name[indexPath.row])
             name.remove(at: indexPath.row)
             images.remove(at: indexPath.row)
             overwiev.remove(at: indexPath.row)
@@ -106,6 +107,7 @@ extension ProfileV : UITableViewDelegate
         performSegue(withIdentifier: "toCoreDataDetails", sender: nil)
         
     }
+    
 }
 
 

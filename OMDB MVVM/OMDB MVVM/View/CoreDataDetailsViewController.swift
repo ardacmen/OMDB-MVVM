@@ -15,6 +15,12 @@ class CoreDataDetailsViewController: UIViewController {
     var allVote = [Float]()
     var allPopularity = [Float]()
     
+    @IBOutlet weak var addComment: UIBarButtonItem!
+    
+    
+    @IBAction func addCommentClicked(_ sender: Any) {
+        performSegue(withIdentifier: "toMyComment", sender: nil)
+    }
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var overWiev: UITextView!
     @IBOutlet weak var voteDesc: UILabel!
@@ -42,6 +48,7 @@ class CoreDataDetailsViewController: UIViewController {
         configure()
         configureLabel()
     }
+    
 
 }
 
@@ -104,3 +111,15 @@ extension CoreDataDetailsViewController
 
 }
 
+extension CoreDataDetailsViewController{
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? MyCommentViewController
+        {
+            destinationVC.title = takenName
+            destinationVC.takenName = takenName
+        }
+    }
+    
+    
+}
