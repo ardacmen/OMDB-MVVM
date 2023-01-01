@@ -33,12 +33,6 @@ class DetailV: UIViewController {
     var pureVote = Float()
     var purePopularity = Float()
     override func viewDidLoad() {
-        
-        
-        if #available(iOS 14.0, *) {
-              overrideUserInterfaceStyle = .light
-          }
-      
         super.viewDidLoad()
         let isAdded = isAdded()
         getData()
@@ -232,8 +226,38 @@ extension DetailV
     
     private func configureLabel()
     {
-     
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        if mainPageV.darkMode.bool(forKey: "darkMode") == false
+        {
+            overrideUserInterfaceStyle = .light
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        }else{
+            overrideUserInterfaceStyle = .dark
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        }
+        
+        if mainPageV.fonts.integer(forKey: "font") == 15
+        {
+            self.text.font = UIFont.systemFont(ofSize: 15.0)
+            self.vote.font = UIFont.systemFont(ofSize: 15.0)
+            self.popularityLabel.font = UIFont.systemFont(ofSize: 15.0)
+            self.popularity.font = UIFont.systemFont(ofSize: 15.0)
+            self.voteLabel.font = UIFont.systemFont(ofSize: 15.0)
+        }
+        else if mainPageV.fonts.integer(forKey: "font") == 17 {
+            self.text.font = UIFont.systemFont(ofSize: 17.0)
+            self.vote.font =  UIFont.systemFont(ofSize: 17.0)
+            self.popularityLabel.font =  UIFont.systemFont(ofSize: 17.0)
+            self.popularity.font =  UIFont.systemFont(ofSize: 17.0)
+            self.voteLabel.font = UIFont.systemFont(ofSize: 17.0)
+        }
+        else{
+            self.vote.font = UIFont.systemFont(ofSize: 19.0)
+            self.text.font = UIFont.systemFont(ofSize: 19.0)
+            self.popularityLabel.font = UIFont.systemFont(ofSize: 19.0)
+            self.popularity.font = UIFont.systemFont(ofSize: 19.0)
+            self.voteLabel.font = UIFont.systemFont(ofSize: 19.0)
+        }
+      
         
         self.voteLabel.layer.masksToBounds = true
         self.voteLabel.layer.cornerRadius = CGRectGetWidth(self.voteLabel.frame)/2
@@ -252,10 +276,24 @@ extension DetailV
     }
     
     func returnBlankHeart(){
-        navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        
+        if mainPageV.darkMode.bool(forKey: "darkMode") == false
+        {
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        }else{
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        }
+       
     }
     func returnFilledHeart(){
-        navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        
+        if mainPageV.darkMode.bool(forKey: "darkMode") == false
+        {
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        }else{
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.red, renderingMode: .alwaysOriginal)
+        }
+        
     }
     
 }

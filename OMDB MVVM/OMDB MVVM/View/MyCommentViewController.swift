@@ -25,11 +25,6 @@ class MyCommentViewController: UIViewController {
         super.viewDidLoad()
         configure()
         getData()
-        
-       
-        print(name)
-        print(comment)
-        print(vote)
         var searcher = 0
         var indexCount = Int()
         if name.count > 0
@@ -91,13 +86,38 @@ extension MyCommentViewController
 {
     func configure()
     {
-        if #available(iOS 14.0, *) {
-              overrideUserInterfaceStyle = .light
+        let mainPageV = MainPageV()
+       
+        if mainPageV.fonts.integer(forKey: "font") == 15
+        {
+            self.yourVoteLabel.font = UIFont.systemFont(ofSize: 15.0)
+            self.yourCommentLabel.font = UIFont.systemFont(ofSize: 15.0)
         }
+        else if mainPageV.fonts.integer(forKey: "font") == 17
+        {
+            self.yourVoteLabel.font = UIFont.systemFont(ofSize: 17.0)
+            self.yourCommentLabel.font = UIFont.systemFont(ofSize: 17.0)
+        }
+        else
+        {
+            self.yourVoteLabel.font = UIFont.systemFont(ofSize: 19.0)
+            self.yourCommentLabel.font = UIFont.systemFont(ofSize: 19.0)
+        }
+        
         navigationController?.navigationItem.title = takenName
+        if mainPageV.darkMode.bool(forKey: "darkMode") == false
+        {
+            overrideUserInterfaceStyle = .light
+            myCommentTextField.layer.borderWidth = 1
+            myCommentTextField.layer.borderColor = CGColor(red: 0, green: 0 , blue: 0, alpha: 1)
+        }
+        else
+        {
+            overrideUserInterfaceStyle = .dark
+            myCommentTextField.layer.borderWidth = 1
+            myCommentTextField.layer.borderColor = CGColor(red: 255, green: 255 , blue: 255, alpha: 1)
+        }
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
-        myCommentTextField.layer.borderWidth = 1
-        myCommentTextField.layer.borderColor = CGColor(red: 0, green: 0 , blue: 0, alpha: 1)
     }
 }
 

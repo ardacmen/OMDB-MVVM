@@ -28,6 +28,8 @@
 		30AB6925294B8B9600910642 /* ProfileV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB6924294B8B9600910642 /* ProfileV.swift */; };
 		30AB6927294B8BA500910642 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB6926294B8BA500910642 /* ProfileViewModel.swift */; };
 		30AE6A122946187A00944829 /* MainPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AE6A112946187A00944829 /* MainPageViewModel.swift */; };
+		30B7A9472961D2F20024C843 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B7A9462961D2F20024C843 /* SettingsViewController.swift */; };
+		30B7A9492961D30D0024C843 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B7A9482961D30D0024C843 /* SettingsViewModel.swift */; };
 		30BDD866294C8AE70083223D /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30BDD864294C8AE70083223D /* CoreData.xcdatamodeld */; };
 		30BDD868294C93A20083223D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDD867294C93A20083223D /* TableViewCell.swift */; };
 		30EE7D29295F019500C5840E /* MyCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EE7D28295F019500C5840E /* MyCommentViewModel.swift */; };
@@ -75,6 +77,8 @@
 		30AB6924294B8B9600910642 /* ProfileV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileV.swift; sourceTree = "<group>"; };
 		30AB6926294B8BA500910642 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		30AE6A112946187A00944829 /* MainPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewModel.swift; sourceTree = "<group>"; };
+		30B7A9462961D2F20024C843 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		30B7A9482961D30D0024C843 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		30BDD865294C8AE70083223D /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		30BDD867294C93A20083223D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		30EE7D28295F019500C5840E /* MyCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommentViewModel.swift; sourceTree = "<group>"; };
@@ -131,7 +135,6 @@
 		306B016D2945F90400EC8680 /* OMDB MVVM */ = {
 			isa = PBXGroup;
 			children = (
-				308FEE6E2957474A00D8FC2C /* Images */,
 				30BDD86B294C95EA0083223D /* Cells */,
 				30BDD863294C8AD70083223D /* Database */,
 				306B01B02945F9C700EC8680 /* Extensions */,
@@ -198,6 +201,7 @@
 				309AAC0D294BAF6000904374 /* DetailV.swift */,
 				308FEE6A295736B400D8FC2C /* CoreDataDetailsViewController.swift */,
 				30EE7D2A295F01A300C5840E /* MyCommentViewController.swift */,
+				30B7A9462961D2F20024C843 /* SettingsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -209,6 +213,7 @@
 				30AB6926294B8BA500910642 /* ProfileViewModel.swift */,
 				309AAC0F294BAF8000904374 /* DetailViewModel.swift */,
 				30EE7D28295F019500C5840E /* MyCommentViewModel.swift */,
+				30B7A9482961D30D0024C843 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -227,13 +232,6 @@
 				30AB6917294B6D5400910642 /* Extensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		308FEE6E2957474A00D8FC2C /* Images */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		30BDD863294C8AD70083223D /* Database */ = {
@@ -397,6 +395,7 @@
 				30BDD866294C8AE70083223D /* CoreData.xcdatamodeld in Sources */,
 				30AE6A122946187A00944829 /* MainPageViewModel.swift in Sources */,
 				306B01AF2945F9C300EC8680 /* Model.swift in Sources */,
+				30B7A9492961D30D0024C843 /* SettingsViewModel.swift in Sources */,
 				308FEE6B295736B400D8FC2C /* CoreDataDetailsViewController.swift in Sources */,
 				306B01AB2945F99D00EC8680 /* MainPageV.swift in Sources */,
 				306B01B42945FB3A00EC8680 /* CollectionViewCell.swift in Sources */,
@@ -409,6 +408,7 @@
 				30AB6918294B6D5400910642 /* Extensions.swift in Sources */,
 				30AB6925294B8B9600910642 /* ProfileV.swift in Sources */,
 				306B01712945F90400EC8680 /* SceneDelegate.swift in Sources */,
+				30B7A9472961D2F20024C843 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

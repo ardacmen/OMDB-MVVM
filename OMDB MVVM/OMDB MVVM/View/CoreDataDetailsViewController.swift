@@ -33,17 +33,10 @@ class CoreDataDetailsViewController: UIViewController {
     var takenImage = String()
     var takenOverwiev = String()
     var takenPopularity = Float()
-    
+    let mainPageV = MainPageV()
   
     
     override func viewDidLoad() {
-        
-   
-        
-        if #available(iOS 14.0, *) {
-              overrideUserInterfaceStyle = .light
-          }
-        
         super.viewDidLoad()
         configure()
         configureLabel()
@@ -70,6 +63,34 @@ extension CoreDataDetailsViewController
     private func configureLabel()
     {
         
+        if mainPageV.fonts.integer(forKey: "font") == 15
+        {
+            self.vote.font = UIFont.systemFont(ofSize: 15.0)
+            self.popularityLabel.font  = UIFont.systemFont(ofSize: 15.0)
+            self.voteDesc.font  = UIFont.systemFont(ofSize: 15.0)
+            self.popularitDesc.font =  UIFont.systemFont(ofSize: 15.0)
+        }
+        else if mainPageV.fonts.integer(forKey: "font") == 17 {
+            self.vote.font = UIFont.systemFont(ofSize: 17.0)
+            self.popularityLabel.font  = UIFont.systemFont(ofSize: 17.0)
+            self.voteDesc.font  = UIFont.systemFont(ofSize: 17.0)
+            self.popularitDesc.font =  UIFont.systemFont(ofSize: 17.0)
+        }
+        else{
+            self.vote.font = UIFont.systemFont(ofSize: 19.0)
+            self.popularityLabel.font  = UIFont.systemFont(ofSize: 19.0)
+            self.voteDesc.font  = UIFont.systemFont(ofSize: 19.0)
+            self.popularitDesc.font =  UIFont.systemFont(ofSize: 19.0)
+        }
+        
+        
+        if mainPageV.darkMode.bool(forKey: "darkMode") == false
+        {
+            overrideUserInterfaceStyle = .light
+        }else{
+            self.vote.textColor = .black
+            self.popularityLabel.textColor = .black
+        }
         self.vote.layer.masksToBounds = true
         self.vote.layer.cornerRadius = CGRectGetWidth(self.vote.frame)/2
         self.vote.layer.borderWidth = 1

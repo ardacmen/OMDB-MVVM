@@ -16,6 +16,7 @@ class ProfileV: UIViewController {
     var selectedName = String()
     var name = [String]()
     
+    
     var selectedImage = String()
     var images = [String]()
     
@@ -30,36 +31,54 @@ class ProfileV: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
    
-    /*
-     @IBAction func languageClicked(_ sender: Any) {
-        let menu = profileViewModel.languageSelector()
-        present(menu, animated: true, completion: nil)
-     }
-     */
+   
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        if #available(iOS 14.0, *) {
-              overrideUserInterfaceStyle = .light
-          }
+        let mainPageV = MainPageV()
+        if mainPageV.darkMode.bool(forKey: "darkMode") == false
+        {
+            overrideUserInterfaceStyle = .light
+        }
    
         self.images.removeAll(keepingCapacity: false)
         self.name.removeAll(keepingCapacity: false)
         self.overwiev.removeAll(keepingCapacity: false)
         self.vote.removeAll(keepingCapacity: false)
         self.popularity.removeAll(keepingCapacity: false)
-   
+        
         getData()
+        
+      
  
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
         
     }
+    private  func deleteAllData(_ entity:String) {
+        
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        fetchRequest.returnsObjectsAsFaults = false
+
+        do {
+            let arrUsrObj = try managedContext.fetch(fetchRequest)
+            for usrObj in arrUsrObj as! [NSManagedObject] {
+                managedContext.delete(usrObj)
+            }
+           try managedContext.save() //don't forget
+            } catch let error as NSError {
+            print("delete fail--",error)
+          }
+        
+
+        }
     
-   
 }
 
 
@@ -163,6 +182,8 @@ extension ProfileV
                         self.overwiev.append(overwiev)
                     }
                     
+                  
+                    
                     if let popularity = result.value(forKey: "popularity") as? Float {
                         self.popularity.append(popularity)
                     }
@@ -206,6 +227,9 @@ extension ProfileV
                     if let popularity = result.value(forKey: "popularity") as? Float {
                         self.popularity.append(popularity)
                     }
+                    
+                  
+                    
                     
                     
                     self.tableView.reloadData()

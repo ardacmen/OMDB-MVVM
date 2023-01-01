@@ -15,58 +15,40 @@ class MainPageV: UIViewController{
       @IBOutlet weak var segmentedCotrols: UISegmentedControl!
       var selectedName = ""
       let userFilter = UserDefaults.standard
+      let fonts = UserDefaults.standard
+      let darkMode = UserDefaults.standard
       var isSearching = false
       let mainPageViewModel = MainPageViewModel()
       let service = WebService()
       var result = [Result]()
       var resultAfterSearch = [Result]()
     
-    
       @IBOutlet weak var collectionView: UICollectionView!
       let searchController = UISearchController(searchResultsController: nil)
     
     
-     func deleteAllData(_ entity:String) {
-        
-    
-     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-     let managedContext = appDelegate.persistentContainer.viewContext
-     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-     fetchRequest.returnsObjectsAsFaults = false
-
-     do {
-         let arrUsrObj = try managedContext.fetch(fetchRequest)
-         for usrObj in arrUsrObj as! [NSManagedObject] {
-             managedContext.delete(usrObj)
-         }
-        try managedContext.save() //don't forget
-         } catch let error as NSError {
-         print("delete fail--",error)
-       }
-     
-
-     }
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  deleteAllData("WishList")
-       
         userFilter.set(0, forKey: "filter")
         configureSearchBar()
         configureView()
-        
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         service.getCharacters(completion: {  data in
               DispatchQueue.main.async {  [self] in
-                  print(data!)
                   self.result = data!
                   self.collectionView.reloadData()
               }
           })
         segmentedCotrols.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
       }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configureView()
+    }
+    
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
      
        
@@ -100,13 +82,16 @@ class MainPageV: UIViewController{
 
    
     private func configureView(){
-        self.navigationItem.rightBarButtonItem?.tintColor = .black
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        
-        if #available(iOS 14.0, *) {
-              overrideUserInterfaceStyle = .light
-          }
-        
+        if darkMode.bool(forKey: "darkMode") == false
+        {
+            overrideUserInterfaceStyle = .light
+            self.navigationItem.rightBarButtonItem?.tintColor = .black
+            self.navigationItem.leftBarButtonItem?.tintColor = .black
+        }else{
+            overrideUserInterfaceStyle = .dark
+            self.navigationItem.rightBarButtonItem?.tintColor = .white
+            self.navigationItem.leftBarButtonItem?.tintColor = .white
+        }
     }
     
     private func configureSearchBar()
