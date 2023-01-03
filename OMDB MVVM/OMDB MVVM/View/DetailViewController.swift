@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 import CoreData
 
-class DetailV: UIViewController {
+class DetailViewController: UIViewController {
 
     var name = [String]()
   
@@ -22,16 +22,19 @@ class DetailV: UIViewController {
     @IBOutlet weak var vote: UILabel!
     @IBOutlet weak var text: UITextView!
     @IBOutlet weak var popularity: UILabel!
-    let mainPageV = MainPageV()
+    
+    let mainPageV = MainPageViewController()
     let detailViewModel = DetailViewModel()
     let service = WebService()
     
     
     var result = [Result]()
+    
     var TakenName = String()
     var imageLink = String()
     var pureVote = Float()
     var purePopularity = Float()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let isAdded = isAdded()
@@ -142,25 +145,15 @@ class DetailV: UIViewController {
         }
         else
         {
-            let profilViewModel = ProfileViewModel()
+            let profilViewModel = FavouritesViewModel()
             profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
             returnFilledHeart()
         }
-       
-        /*
-         DELETE
-         detailViewModel.deleteData(nameForDelete: TakenName)
-         returnBlankHeart()
-         ADD
-         let profilViewModel = ProfileViewModel()
-         profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
-         returnFilledHeart()
-         */
     }
 }
     
 
-extension DetailV
+extension DetailViewController
 {
     func isAdded() -> Bool
     {
@@ -194,7 +187,7 @@ extension DetailV
 
 
 
-extension DetailV
+extension DetailViewController
 {
     func getData(){
         self.name.removeAll(keepingCapacity: false)

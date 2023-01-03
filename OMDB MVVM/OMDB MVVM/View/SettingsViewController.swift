@@ -18,7 +18,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var darkModeLabel: UILabel!
     
     
-    let mainPageV = MainPageV()
+    let mainPageV = MainPageViewController()
     
     
     override func viewDidLoad() {

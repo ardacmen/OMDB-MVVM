@@ -19,7 +19,7 @@ protocol ISettingsViewModel:AnyObject {
 
 class  SettingsViewModel: ISettingsViewModel
 {
-    let mainPageViewController = MainPageV()
+    let mainPageViewController = MainPageViewController()
 }
 
 

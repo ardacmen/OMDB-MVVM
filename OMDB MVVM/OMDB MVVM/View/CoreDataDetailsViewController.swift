@@ -33,7 +33,7 @@ class CoreDataDetailsViewController: UIViewController {
     var takenImage = String()
     var takenOverwiev = String()
     var takenPopularity = Float()
-    let mainPageV = MainPageV()
+    let mainPageV = MainPageViewController()
   
     
     override func viewDidLoad() {

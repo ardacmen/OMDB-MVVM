@@ -86,7 +86,7 @@ extension MyCommentViewController
 {
     func configure()
     {
-        let mainPageV = MainPageV()
+        let mainPageV = MainPageViewController()
        
         if mainPageV.fonts.integer(forKey: "font") == 15
         {

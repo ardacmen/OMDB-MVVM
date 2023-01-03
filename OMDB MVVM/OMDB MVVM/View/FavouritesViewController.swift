@@ -9,13 +9,14 @@ import UIKit
 import CoreData
 import Kingfisher
 
-class ProfileV: UIViewController {
+class FavouritesViewController: UIViewController {
     
-    var profileViewModel = ProfileViewModel()
+    var profileViewModel = FavouritesViewModel()
     
     var selectedName = String()
     var name = [String]()
     
+    var comment = [String]()
     
     var selectedImage = String()
     var images = [String]()
@@ -31,13 +32,18 @@ class ProfileV: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
    
-   
+    /*
+     @IBAction func languageClicked(_ sender: Any) {
+        let menu = profileViewModel.languageSelector()
+        present(menu, animated: true, completion: nil)
+     }
+     */
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        let mainPageV = MainPageV()
+        let mainPageV = MainPageViewController()
         if mainPageV.darkMode.bool(forKey: "darkMode") == false
         {
             overrideUserInterfaceStyle = .light
@@ -48,6 +54,7 @@ class ProfileV: UIViewController {
         self.overwiev.removeAll(keepingCapacity: false)
         self.vote.removeAll(keepingCapacity: false)
         self.popularity.removeAll(keepingCapacity: false)
+        self.comment.removeAll(keepingCapacity: false)
         
         getData()
         
@@ -82,7 +89,7 @@ class ProfileV: UIViewController {
 }
 
 
-extension ProfileV
+extension FavouritesViewController
 {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? CoreDataDetailsViewController
@@ -98,7 +105,7 @@ extension ProfileV
 }
 
 
-extension ProfileV : UITableViewDelegate
+extension FavouritesViewController : UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -131,7 +138,7 @@ extension ProfileV : UITableViewDelegate
 
 
 
-extension ProfileV : UITableViewDataSource
+extension FavouritesViewController : UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return name.count
@@ -149,7 +156,7 @@ extension ProfileV : UITableViewDataSource
     
 }
 
-extension ProfileV
+extension FavouritesViewController
 {
     func getDataForCheckArray(){
         
@@ -228,7 +235,9 @@ extension ProfileV
                         self.popularity.append(popularity)
                     }
                     
-                  
+                    if let comment = result.value(forKey: "commentName") as? String{
+                        self.comment.append(comment)
+                    }
                     
                     
                     

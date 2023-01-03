@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 import CoreData
 
-class MainPageV: UIViewController{
+class MainPageViewController: UIViewController{
     
     
       @IBOutlet weak var segmentedCotrols: UISegmentedControl!
@@ -27,9 +27,7 @@ class MainPageV: UIViewController{
       let searchController = UISearchController(searchResultsController: nil)
     
     
- 
-    
-    override func viewDidLoad() {
+      override func viewDidLoad() {
         super.viewDidLoad()
         userFilter.set(0, forKey: "filter")
         configureSearchBar()
@@ -38,6 +36,7 @@ class MainPageV: UIViewController{
         collectionView.dataSource = self
         service.getCharacters(completion: {  data in
               DispatchQueue.main.async {  [self] in
+                  print(data!)
                   self.result = data!
                   self.collectionView.reloadData()
               }
@@ -123,9 +122,9 @@ class MainPageV: UIViewController{
 
 
 
-extension MainPageV{
+extension MainPageViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationVC = segue.destination as? DetailV
+        if let destinationVC = segue.destination as? DetailViewController
         {
             destinationVC.title = selectedName
             destinationVC.TakenName = selectedName
@@ -134,7 +133,7 @@ extension MainPageV{
 }
 
 
-extension MainPageV : UICollectionViewDelegate
+extension MainPageViewController : UICollectionViewDelegate
 {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isSearching == false
@@ -150,7 +149,7 @@ extension MainPageV : UICollectionViewDelegate
     }
 }
 
-extension MainPageV : UICollectionViewDataSource{
+extension MainPageViewController : UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isSearching == false
@@ -281,7 +280,7 @@ extension MainPageV : UICollectionViewDataSource{
     
 }
 
-extension MainPageV: UISearchResultsUpdating
+extension MainPageViewController: UISearchResultsUpdating
 {
     func updateSearchResults(for searchController: UISearchController) {
         let text = searchController.searchBar.text!
@@ -307,7 +306,7 @@ extension MainPageV: UISearchResultsUpdating
     }
 }
 
-extension MainPageV : UISearchBarDelegate
+extension MainPageViewController : UISearchBarDelegate
 {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false

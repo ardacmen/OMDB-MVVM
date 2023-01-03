@@ -16,10 +16,7 @@ protocol IDetailViewModel:AnyObject
 }
 class DetailViewModel : IDetailViewModel
 {
-   
-    
-   
- 
+
 }
 extension DetailViewModel
 {
@@ -28,8 +25,6 @@ extension DetailViewModel
         let context = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WishList")
-        
-        
         
         do {
             let results = try context.fetch(fetchRequest)
