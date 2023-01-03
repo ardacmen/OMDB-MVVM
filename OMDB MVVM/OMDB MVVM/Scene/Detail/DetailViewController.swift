@@ -24,6 +24,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var popularity: UILabel!
     
     let mainPageV = MainPageViewController()
+    let mainPageViewModel = MainPageViewModel()
     let detailViewModel = DetailViewModel()
     let service = WebService()
     
@@ -53,7 +54,7 @@ class DetailViewController: UIViewController {
         service.getCharacters(completion: { data in
             DispatchQueue.main.async { [self] in
                 self.result = data!
-                if self.mainPageV.isSearching == false
+                if self.mainPageViewModel.isSearching == false
                 {
                     for i in 0...self.result.count-1
                     {
@@ -145,8 +146,8 @@ class DetailViewController: UIViewController {
         }
         else
         {
-            let profilViewModel = FavouritesViewModel()
-            profilViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
+            let favouritesViewModel = FavouritesViewModel()
+            favouritesViewModel.saveData(name: TakenName, overwiev:self.text.text!, popularity: (self.purePopularity) , vote: (self.pureVote), image: self.imageLink)
             returnFilledHeart()
         }
     }
@@ -219,7 +220,7 @@ extension DetailViewController
     
     private func configureLabel()
     {
-        if mainPageV.darkMode.bool(forKey: "darkMode") == false
+        if UserDefaults.standard.bool(forKey: "darkMode") == false
         {
             overrideUserInterfaceStyle = .light
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
@@ -228,28 +229,7 @@ extension DetailViewController
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         }
         
-        if mainPageV.fonts.integer(forKey: "font") == 15
-        {
-            self.text.font = UIFont.systemFont(ofSize: 15.0)
-            self.vote.font = UIFont.systemFont(ofSize: 15.0)
-            self.popularityLabel.font = UIFont.systemFont(ofSize: 15.0)
-            self.popularity.font = UIFont.systemFont(ofSize: 15.0)
-            self.voteLabel.font = UIFont.systemFont(ofSize: 15.0)
-        }
-        else if mainPageV.fonts.integer(forKey: "font") == 17 {
-            self.text.font = UIFont.systemFont(ofSize: 17.0)
-            self.vote.font =  UIFont.systemFont(ofSize: 17.0)
-            self.popularityLabel.font =  UIFont.systemFont(ofSize: 17.0)
-            self.popularity.font =  UIFont.systemFont(ofSize: 17.0)
-            self.voteLabel.font = UIFont.systemFont(ofSize: 17.0)
-        }
-        else{
-            self.vote.font = UIFont.systemFont(ofSize: 19.0)
-            self.text.font = UIFont.systemFont(ofSize: 19.0)
-            self.popularityLabel.font = UIFont.systemFont(ofSize: 19.0)
-            self.popularity.font = UIFont.systemFont(ofSize: 19.0)
-            self.voteLabel.font = UIFont.systemFont(ofSize: 19.0)
-        }
+     
       
         
         self.voteLabel.layer.masksToBounds = true
@@ -270,7 +250,7 @@ extension DetailViewController
     
     func returnBlankHeart(){
         
-        if mainPageV.darkMode.bool(forKey: "darkMode") == false
+        if UserDefaults.standard.bool(forKey: "darkMode") == false
         {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")?.withTintColor(.black, renderingMode: .alwaysOriginal)
         }else{
@@ -280,7 +260,7 @@ extension DetailViewController
     }
     func returnFilledHeart(){
         
-        if mainPageV.darkMode.bool(forKey: "darkMode") == false
+        if UserDefaults.standard.bool(forKey: "darkMode") == false
         {
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
         }else{
@@ -292,3 +272,28 @@ extension DetailViewController
 }
 
 
+
+/*
+ if mainPageV.fonts.integer(forKey: "font") == 15
+ {
+     self.text.font = UIFont.systemFont(ofSize: 15.0)
+     self.vote.font = UIFont.systemFont(ofSize: 15.0)
+     self.popularityLabel.font = UIFont.systemFont(ofSize: 15.0)
+     self.popularity.font = UIFont.systemFont(ofSize: 15.0)
+     self.voteLabel.font = UIFont.systemFont(ofSize: 15.0)
+ }
+ else if mainPageV.fonts.integer(forKey: "font") == 17 {
+     self.text.font = UIFont.systemFont(ofSize: 17.0)
+     self.vote.font =  UIFont.systemFont(ofSize: 17.0)
+     self.popularityLabel.font =  UIFont.systemFont(ofSize: 17.0)
+     self.popularity.font =  UIFont.systemFont(ofSize: 17.0)
+     self.voteLabel.font = UIFont.systemFont(ofSize: 17.0)
+ }
+ else{
+     self.vote.font = UIFont.systemFont(ofSize: 19.0)
+     self.text.font = UIFont.systemFont(ofSize: 19.0)
+     self.popularityLabel.font = UIFont.systemFont(ofSize: 19.0)
+     self.popularity.font = UIFont.systemFont(ofSize: 19.0)
+     self.voteLabel.font = UIFont.systemFont(ofSize: 19.0)
+ }
+ */
