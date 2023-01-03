@@ -43,11 +43,13 @@ Here is a demo of OMDB MVVM in action:
 
 ## Screenshots and Videos
 
-<p align="center">
+<p align="center">![Favorites](https://user-images.githubusercontent.com/78663416/210410291-ed51d69f-beaa-4dc4-9b59-7913ddac088c.jpg)
+
   <img src="images/screenshot1.png" width="160" alt="All Films">
   <img src="images/screenshot2.png" width="160" alt="Favourites">
   <img src="images/screenshot3.png" width="160" alt="Sorting">
-  <img src="images/screenshot4.png" width="160" alt="Searching">
+  <img src="images/screenshot4.png" width="160" alt="Searching">![Details](https://user-images.githubusercontent.com/78663416/210410270-14df0399-c99a-437c-9234-c6a8c0dd324a.jpg)
+
   <img src="images/screenshot5.png" width="160" alt="Details">
 </p>
 
