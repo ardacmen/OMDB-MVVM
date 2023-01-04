@@ -113,6 +113,11 @@ final class FavouritesViewModel
                             context.delete(result)
 
                             do {
+                                name.remove(at: indexForDelete)
+                                images.remove(at: indexForDelete)
+                                overwiev.remove(at: indexForDelete)
+                                vote.remove(at: indexForDelete)
+                                popularity.remove(at: indexForDelete )
                                 try context.save()
                                 print("success (delete)")
                             } catch {
@@ -128,11 +133,6 @@ final class FavouritesViewModel
         } catch {
             print("delete error")
         }
-        name.remove(at: indexForDelete)
-        images.remove(at: indexForDelete)
-        overwiev.remove(at: indexForDelete)
-        vote.remove(at: indexForDelete)
-        popularity.remove(at: indexForDelete )
     }
     
     

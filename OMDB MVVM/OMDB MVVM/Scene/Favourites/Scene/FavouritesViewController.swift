@@ -50,7 +50,7 @@ class FavouritesViewController: UIViewController {
 extension FavouritesViewController
 {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationVC = segue.destination as? CoreDataDetailsViewController
+        if let destinationVC = segue.destination as? FavouritesDetailViewController
         {
             destinationVC.title = selectedName
             destinationVC.takenName = selectedName
@@ -67,10 +67,10 @@ extension FavouritesViewController : UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let myCommentViewModel = MyCommentViewModel()
+            myCommentViewModel.checkAndDelete(checkName: favouritesViewModel.name[indexPath.row])
             
             favouritesViewModel.deleteData(indexForDelete: indexPath.row)
-            let myCommentViewController = MyCommentViewController()
-            myCommentViewController.checkAndDelete(checkName: favouritesViewModel.name[indexPath.row])
             self.tableView.reloadData()
         }
     }

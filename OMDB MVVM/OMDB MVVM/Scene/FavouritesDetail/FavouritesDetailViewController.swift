@@ -9,9 +9,9 @@ import UIKit
 import Kingfisher
 import CoreData
 
-class CoreDataDetailsViewController: UIViewController {
+class FavouritesDetailViewController: UIViewController {
 
-   
+   let favouritesDetailViewModel = FavouritesDetailViewModel()
     
     @IBOutlet weak var addComment: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
@@ -37,8 +37,6 @@ class CoreDataDetailsViewController: UIViewController {
         self.overWiev.text = self.takenOverwiev
         self.popularitDesc.text = "Popluarity in Users "
         self.voteDesc.text = "Users Vote for Film "
-        self.vote.text = String(self.takenVote)
-        self.popularityLabel.text = String(format: "%.1f", self.takenPopularity)
         self.imageView.kf.setImage(with: URL(string: takenImage))
         self.vote.layer.masksToBounds = true
         self.vote.layer.cornerRadius = CGRectGetWidth(self.vote.frame)/2
@@ -51,26 +49,7 @@ class CoreDataDetailsViewController: UIViewController {
         self.popularityLabel.layer.borderWidth = 1
         self.popularityLabel.layer.borderColor = UIColor.black.cgColor
         
-        if UserDefaults.standard.integer(forKey: "font") == 15
-        {
-            self.vote.font = UIFont.systemFont(ofSize: 15.0)
-            self.popularityLabel.font  = UIFont.systemFont(ofSize: 15.0)
-            self.voteDesc.font  = UIFont.systemFont(ofSize: 15.0)
-            self.popularitDesc.font =  UIFont.systemFont(ofSize: 15.0)
-        }
-        else if UserDefaults.standard.integer(forKey: "font") == 17 {
-            self.vote.font = UIFont.systemFont(ofSize: 17.0)
-            self.popularityLabel.font  = UIFont.systemFont(ofSize: 17.0)
-            self.voteDesc.font  = UIFont.systemFont(ofSize: 17.0)
-            self.popularitDesc.font =  UIFont.systemFont(ofSize: 17.0)
-        }
-        else{
-            self.vote.font = UIFont.systemFont(ofSize: 19.0)
-            self.popularityLabel.font  = UIFont.systemFont(ofSize: 19.0)
-            self.voteDesc.font  = UIFont.systemFont(ofSize: 19.0)
-            self.popularitDesc.font =  UIFont.systemFont(ofSize: 19.0)
-        }
-        
+       
         
         if UserDefaults.standard.bool(forKey: "darkMode") == true
         {
@@ -79,34 +58,12 @@ class CoreDataDetailsViewController: UIViewController {
             overrideUserInterfaceStyle  = .light
         }
         
-      
+        self.vote.text = String(self.takenVote)
+        self.popularityLabel.text = String(format: "%.1f", self.takenPopularity)
         
-        if takenVote > 0 && takenVote < 2.5
-        {
-            self.vote.backgroundColor = .red
-        }
-        else if takenVote >= 2.5 && takenVote < 7.5
-        {
-            self.vote.backgroundColor = .yellow
-        }
-        else
-        {
-            self.vote.backgroundColor = .green
-        }
+        self.vote.backgroundColor =  favouritesDetailViewModel.returnVoteColor(vote: self.takenVote)
         
-        
-        if takenPopularity > 0 && takenPopularity < 2.5
-        {
-            self.popularityLabel.backgroundColor = .red
-        }
-        else if takenPopularity >= 2.5 && takenPopularity < 7.5
-        {
-            self.popularityLabel.backgroundColor = .yellow
-        }
-        else
-        {
-            self.popularityLabel.backgroundColor = .green
-        }
+        self.popularityLabel.backgroundColor = favouritesDetailViewModel.returnPopularityColor(popularity: self.takenPopularity)
         
     }
     
@@ -120,7 +77,7 @@ class CoreDataDetailsViewController: UIViewController {
 
 
 
-extension CoreDataDetailsViewController{
+extension FavouritesDetailViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? MyCommentViewController

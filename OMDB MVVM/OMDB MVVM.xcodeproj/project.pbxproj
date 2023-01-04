@@ -10,6 +10,7 @@
 		301195532964A91B001C0A00 /* UILabel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195522964A91B001C0A00 /* UILabel + Extensions.swift */; };
 		301195552964A957001C0A00 /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195542964A957001C0A00 /* UIViewController + Extensions.swift */; };
 		303B6B2E2964BA85005B05B5 /* FavouritesDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B6B2D2964BA85005B05B5 /* FavouritesDetailViewModel.swift */; };
+		303FCD6B296593EF00470229 /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303FCD6A296593EF00470229 /* String + Extensions.swift */; };
 		306B016F2945F90400EC8680 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B016E2945F90400EC8680 /* AppDelegate.swift */; };
 		306B01712945F90400EC8680 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B01702945F90400EC8680 /* SceneDelegate.swift */; };
 		306B01762945F90400EC8680 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 306B01742945F90400EC8680 /* Main.storyboard */; };
@@ -24,7 +25,7 @@
 		306B01AD2945F9BB00EC8680 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B01AC2945F9BB00EC8680 /* WebService.swift */; };
 		306B01AF2945F9C300EC8680 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B01AE2945F9C300EC8680 /* Model.swift */; };
 		306B01B42945FB3A00EC8680 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B01B32945FB3A00EC8680 /* CollectionViewCell.swift */; };
-		308FEE6B295736B400D8FC2C /* CoreDataDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FEE6A295736B400D8FC2C /* CoreDataDetailsViewController.swift */; };
+		308FEE6B295736B400D8FC2C /* FavouritesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308FEE6A295736B400D8FC2C /* FavouritesDetailViewController.swift */; };
 		309AAC0E294BAF6000904374 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309AAC0D294BAF6000904374 /* DetailViewController.swift */; };
 		309AAC10294BAF8000904374 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309AAC0F294BAF8000904374 /* DetailViewModel.swift */; };
 		30AB6925294B8B9600910642 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB6924294B8B9600910642 /* FavouritesViewController.swift */; };
@@ -59,6 +60,7 @@
 		301195522964A91B001C0A00 /* UILabel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extensions.swift"; sourceTree = "<group>"; };
 		301195542964A957001C0A00 /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
 		303B6B2D2964BA85005B05B5 /* FavouritesDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesDetailViewModel.swift; sourceTree = "<group>"; };
+		303FCD6A296593EF00470229 /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
 		306B016B2945F90400EC8680 /* OMDB MVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OMDB MVVM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		306B016E2945F90400EC8680 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		306B01702945F90400EC8680 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,7 +77,7 @@
 		306B01AC2945F9BB00EC8680 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		306B01AE2945F9C300EC8680 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		306B01B32945FB3A00EC8680 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		308FEE6A295736B400D8FC2C /* CoreDataDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDetailsViewController.swift; sourceTree = "<group>"; };
+		308FEE6A295736B400D8FC2C /* FavouritesDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesDetailViewController.swift; sourceTree = "<group>"; };
 		309AAC0D294BAF6000904374 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		309AAC0F294BAF8000904374 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		30AB6924294B8B9600910642 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
@@ -177,7 +179,7 @@
 		303B6B2C2964B9D5005B05B5 /* FavouritesDetail */ = {
 			isa = PBXGroup;
 			children = (
-				308FEE6A295736B400D8FC2C /* CoreDataDetailsViewController.swift */,
+				308FEE6A295736B400D8FC2C /* FavouritesDetailViewController.swift */,
 				303B6B2D2964BA85005B05B5 /* FavouritesDetailViewModel.swift */,
 			);
 			path = FavouritesDetail;
@@ -325,6 +327,7 @@
 			children = (
 				301195522964A91B001C0A00 /* UILabel + Extensions.swift */,
 				301195542964A957001C0A00 /* UIViewController + Extensions.swift */,
+				303FCD6A296593EF00470229 /* String + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -483,7 +486,7 @@
 				306B01AF2945F9C300EC8680 /* Model.swift in Sources */,
 				303B6B2E2964BA85005B05B5 /* FavouritesDetailViewModel.swift in Sources */,
 				30B7A9492961D30D0024C843 /* SettingsViewModel.swift in Sources */,
-				308FEE6B295736B400D8FC2C /* CoreDataDetailsViewController.swift in Sources */,
+				308FEE6B295736B400D8FC2C /* FavouritesDetailViewController.swift in Sources */,
 				306B01AB2945F99D00EC8680 /* MainPageViewController.swift in Sources */,
 				306B01B42945FB3A00EC8680 /* CollectionViewCell.swift in Sources */,
 				30EE7D29295F019500C5840E /* MyCommentViewModel.swift in Sources */,
@@ -492,6 +495,7 @@
 				30AB6927294B8BA500910642 /* FavouritesViewModel.swift in Sources */,
 				306B016F2945F90400EC8680 /* AppDelegate.swift in Sources */,
 				30EE7D2B295F01A300C5840E /* MyCommentViewController.swift in Sources */,
+				303FCD6B296593EF00470229 /* String + Extensions.swift in Sources */,
 				306B01AD2945F9BB00EC8680 /* WebService.swift in Sources */,
 				309AAC10294BAF8000904374 /* DetailViewModel.swift in Sources */,
 				30AB6925294B8B9600910642 /* FavouritesViewController.swift in Sources */,

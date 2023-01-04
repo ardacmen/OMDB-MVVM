@@ -89,7 +89,9 @@ extension DetailViewController
             if detailViewModel.result[i].title == self.TakenName
             {
                 
-              
+                pureVote = Float(detailViewModel.result[i].vote_average!)!
+                purePopularity = Float(detailViewModel.result[i].popularity!)! * 2 / 1000
+                
                 self.imageLink = "https://image.tmdb.org/t/p/w1280" + detailViewModel.result[i].poster_path!
                 self.image.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + detailViewModel.result[i].poster_path! ))
                 self.image.layer.cornerRadius = 19
