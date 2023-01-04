@@ -132,8 +132,8 @@
 		303B6B262964B96D005B05B5 /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				30AE6A112946187A00944829 /* MainPageViewModel.swift */,
-				306B01AA2945F99D00EC8680 /* MainPageViewController.swift */,
+				303FCD672965685100470229 /* Cells */,
+				303FCD662965684800470229 /* Scene */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";
@@ -141,8 +141,8 @@
 		303B6B272964B978005B05B5 /* Favourites */ = {
 			isa = PBXGroup;
 			children = (
-				30AB6924294B8B9600910642 /* FavouritesViewController.swift */,
-				30AB6926294B8BA500910642 /* FavouritesViewModel.swift */,
+				303FCD692965686800470229 /* Scene */,
+				303FCD682965685F00470229 /* Cells */,
 			);
 			path = Favourites;
 			sourceTree = "<group>";
@@ -199,6 +199,40 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
+		303FCD662965684800470229 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				306B01AA2945F99D00EC8680 /* MainPageViewController.swift */,
+				30AE6A112946187A00944829 /* MainPageViewModel.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		303FCD672965685100470229 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				306B01B32945FB3A00EC8680 /* CollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		303FCD682965685F00470229 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				30BDD867294C93A20083223D /* TableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		303FCD692965686800470229 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				30AB6926294B8BA500910642 /* FavouritesViewModel.swift */,
+				30AB6924294B8B9600910642 /* FavouritesViewController.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		306B01622945F90400EC8680 = {
 			isa = PBXGroup;
 			children = (
@@ -223,7 +257,6 @@
 			isa = PBXGroup;
 			children = (
 				303B6B252964B963005B05B5 /* Scene */,
-				30BDD86B294C95EA0083223D /* Cells */,
 				30BDD863294C8AD70083223D /* Database */,
 				306B01B02945F9C700EC8680 /* Extensions */,
 				306B01A92945F98900EC8680 /* Service */,
@@ -302,15 +335,6 @@
 				30BDD864294C8AE70083223D /* CoreData.xcdatamodeld */,
 			);
 			path = Database;
-			sourceTree = "<group>";
-		};
-		30BDD86B294C95EA0083223D /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				306B01B32945FB3A00EC8680 /* CollectionViewCell.swift */,
-				30BDD867294C93A20083223D /* TableViewCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

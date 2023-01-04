@@ -11,8 +11,7 @@ import CoreData
 
 class DetailViewController: UIViewController {
 
-    var name = [String]()
-  
+
    
   
     @IBOutlet weak var voteLabel: UILabel!
@@ -23,24 +22,22 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var text: UITextView!
     @IBOutlet weak var popularity: UILabel!
     
-    let mainPageV = MainPageViewController()
-    let mainPageViewModel = MainPageViewModel()
     let detailViewModel = DetailViewModel()
-    let service = WebService()
     
     
-    var result = [Result]()
+   
     
     var TakenName = String()
     var imageLink = String()
     var pureVote = Float()
     var purePopularity = Float()
     
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let isAdded = isAdded()
-        getData()
-        configureLabel()
+        detailViewModel.getData()
+        let isAdded = detailViewModel.isAdded(takenName: TakenName)
         
         if isAdded == true
         {
@@ -51,92 +48,18 @@ class DetailViewController: UIViewController {
             returnBlankHeart()
         }
     
-        service.getCharacters(completion: { data in
+        detailViewModel.fetchData(completion: { data in
             DispatchQueue.main.async { [self] in
-                self.result = data!
-                if self.mainPageViewModel.isSearching == false
-                {
-                    for i in 0...self.result.count-1
-                    {
-                        if self.result[i].title == self.TakenName
-                        {
-                            
-                          
-                            self.imageLink = "https://image.tmdb.org/t/p/w1280" + self.result[i].poster_path!
-                            self.image.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + self.result[i].poster_path! ))
-                            self.image.layer.cornerRadius = 19
-                            
-                            self.pureVote = Float(self.result[i].vote_average!)!
-                            self.vote.text = "User's Vote  "
-                            self.voteLabel.text = String(self.result[i].vote_average!)
-                            
-                            self.text.text = self.result[i].overview
-                           
-                            self.purePopularity = Float(self.result[i].popularity!)! * 2 / 1000
-                            self.popularity.text = "Popularity in Users "
-                            self.popularityLabel.text = String(format: "%.1f",  self.purePopularity)
-                        
-                            
-                            
-                            if self.pureVote <= 2.5 &&  self.pureVote > 0 {
-                                self.voteLabel.backgroundColor = .red
-                            }else if  self.pureVote > 2.5 &&  self.pureVote <= 7.5 {
-                                self.voteLabel.backgroundColor = .yellow
-                            }else{
-                                self.voteLabel.backgroundColor = .green
-                            }
-                            
-                            if  self.purePopularity <= 2.5 &&   self.purePopularity > 0 {
-                                self.popularityLabel.backgroundColor = .red
-                            }else if  self.pureVote > 2.5 &&   self.purePopularity <= 8.0 {
-                                self.popularityLabel.backgroundColor = .yellow
-                            }else{
-                                self.popularityLabel.backgroundColor = .green
-                            }
-                        }
-                    }
-                }
+                configureLabel()
             }
         })
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        getData()
-        
-        if name.count > 0
-        {
-            var searcher = 0
-            for i in 0...name.count-1
-            {
-                if TakenName == name[i]
-                {
-                   searcher = 1
-                }
-               
-            }
-            if searcher == 0
-            {
-                self.returnBlankHeart()
-            }
-            else
-            {
-                self.returnFilledHeart()
-            }
-        }
-        else
-        {
-            self.returnBlankHeart()
-        }
         
     }
+      
     
-   
-    
-   
-    
+
     @IBAction func addButtonClicked(_ sender: Any) {
-        let isAdded = isAdded()
+        let isAdded =  detailViewModel.isAdded(takenName: TakenName)
         
         
         if isAdded == true
@@ -154,72 +77,45 @@ class DetailViewController: UIViewController {
 }
     
 
-extension DetailViewController
-{
-    func isAdded() -> Bool
-    {
-        getData()
-        var searcher = 0
-        if self.name.count > 0
-        {
-            for i in 0...name.count-1
-            {
-                if self.TakenName == self.name[i]
-                {
-                   searcher = 1
-                }
-            }
-        }
-        
-        
-        if searcher == 1
-        {
-            return true
-        }
-        else
-        {
-            return false
-        }
-    }
-}
-
-
-
-
 
 
 extension DetailViewController
 {
-    func getData(){
-        self.name.removeAll(keepingCapacity: false)
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WishList")
-        fetchRequest.returnsObjectsAsFaults = false
-        
-        do {
-            let results = try context.fetch(fetchRequest)
-            if results.count > 0 {
-                for result in results as! [NSManagedObject] {
-                    
-                    if let name = result.value(forKey: "name") as? String {
-                        self.name.append(name)
-                    }
-
-                    
-                }
-            }
-            
-            
-        } catch {
-            print("error")
-        }
-        
-    }
-    
     
     private func configureLabel()
     {
+        for i in 0...detailViewModel.result.count-1
+        {
+            if detailViewModel.result[i].title == self.TakenName
+            {
+                
+              
+                self.imageLink = "https://image.tmdb.org/t/p/w1280" + detailViewModel.result[i].poster_path!
+                self.image.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w1280" + detailViewModel.result[i].poster_path! ))
+                self.image.layer.cornerRadius = 19
+                
+               
+                self.vote.text = "User's Vote  "
+                self.voteLabel.text = String(detailViewModel.result[i].vote_average!)
+                
+                
+                self.text.text = detailViewModel.result[i].overview
+               
+    
+                self.popularity.text = "Popularity in Users "
+                self.popularityLabel.text = String(format: "%.1f",  (Float(detailViewModel.result[i].popularity!)! * 2 / 1000))
+            
+                
+             
+                self.voteLabel.backgroundColor =   detailViewModel.voteLabelBackGroundColor(vote: Float(detailViewModel.result[i].vote_average!)!)
+                
+                self.popularityLabel.backgroundColor = detailViewModel.popularityLabelBackGroundColor(popularity:  Float(detailViewModel.result[i].popularity!)! * 2 / 1000)
+            
+            }
+        
+    }
+        
+        
         if UserDefaults.standard.bool(forKey: "darkMode") == false
         {
             overrideUserInterfaceStyle = .light
@@ -229,50 +125,33 @@ extension DetailViewController
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         }
         
-     
-      
+        
+        
         
         self.voteLabel.layer.masksToBounds = true
         self.voteLabel.layer.cornerRadius = CGRectGetWidth(self.voteLabel.frame)/2
         self.voteLabel.layer.borderWidth = 1
         self.voteLabel.layer.borderColor = UIColor.black.cgColor
         self.voteLabel.textColor = .black
-     
-       
+        
+        
         self.popularityLabel.layer.masksToBounds = true
         self.popularityLabel.layer.cornerRadius = CGRectGetWidth(self.popularityLabel.frame)/2
         self.popularityLabel.layer.borderWidth = 1
         self.popularityLabel.layer.borderColor = UIColor.black.cgColor
         self.popularityLabel.textColor = .black
         
-        
     }
     
+    
     func returnBlankHeart(){
-        
-        if UserDefaults.standard.bool(forKey: "darkMode") == false
-        {
-            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")?.withTintColor(.black, renderingMode: .alwaysOriginal)
-        }else{
-            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")?.withTintColor(.white, renderingMode: .alwaysOriginal)
-        }
-       
+        navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")?.withTintColor(detailViewModel.returnBlankHeart(), renderingMode: .alwaysOriginal)
     }
     func returnFilledHeart(){
-        
-        if UserDefaults.standard.bool(forKey: "darkMode") == false
-        {
-            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal)
-        }else{
-            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(.red, renderingMode: .alwaysOriginal)
-        }
-        
+        navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")?.withTintColor(detailViewModel.returnFilledHeart(), renderingMode: .alwaysOriginal)
     }
     
 }
-
-
-
 /*
  if mainPageV.fonts.integer(forKey: "font") == 15
  {
