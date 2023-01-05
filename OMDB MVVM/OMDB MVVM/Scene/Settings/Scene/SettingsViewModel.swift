@@ -59,6 +59,8 @@ final class  SettingsViewModel
           }
     }
     
+   
+    
     
     
     func smallFont() {

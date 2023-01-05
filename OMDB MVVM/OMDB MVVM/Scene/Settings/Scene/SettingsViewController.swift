@@ -7,19 +7,19 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISheetPresentationControllerDelegate {
    
-    @IBOutlet weak var darkModeEmojiLabel: UILabel!
     
-
+    @available(iOS 15.0, *)
+    override var sheetPresentationController: UISheetPresentationController?{
+            presentationController as? UISheetPresentationController
+    }
     
     let settingsViewModel = SettingsViewModel()
     
+    @IBOutlet weak var darkModeEmojiLabel: UILabel!
     @IBOutlet weak var settingsTableView: UITableView!
     @IBOutlet weak var darkModeSwitch: UISwitch!
-    
-
-    
     
     override func viewDidLoad() {
        
@@ -30,9 +30,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
         settingsViewModel.addValuesForArrays()
+        sheetPresentationController?.detents = [.medium()]
+               sheetPresentationController?.preferredCornerRadius = 24
+
+        
         if UserDefaults.standard.bool(forKey: "darkMode") == true {
             darkModeSwitch.isOn = true
-        
         }
         else
         {
@@ -69,6 +72,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         
         cell.nameLabel.text = settingsViewModel.nameArray[indexPath.row]
+        
         
         if UserDefaults.standard.bool(forKey: "darkMode") == true
         {
