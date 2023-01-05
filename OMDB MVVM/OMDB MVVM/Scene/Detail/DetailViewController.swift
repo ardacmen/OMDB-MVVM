@@ -36,6 +36,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        image.enableZoom()
         detailViewModel.getData()
         let isAdded = detailViewModel.isAdded(takenName: TakenName)
         
@@ -154,27 +155,4 @@ extension DetailViewController
     }
     
 }
-/*
- if mainPageV.fonts.integer(forKey: "font") == 15
- {
-     self.text.font = UIFont.systemFont(ofSize: 15.0)
-     self.vote.font = UIFont.systemFont(ofSize: 15.0)
-     self.popularityLabel.font = UIFont.systemFont(ofSize: 15.0)
-     self.popularity.font = UIFont.systemFont(ofSize: 15.0)
-     self.voteLabel.font = UIFont.systemFont(ofSize: 15.0)
- }
- else if mainPageV.fonts.integer(forKey: "font") == 17 {
-     self.text.font = UIFont.systemFont(ofSize: 17.0)
-     self.vote.font =  UIFont.systemFont(ofSize: 17.0)
-     self.popularityLabel.font =  UIFont.systemFont(ofSize: 17.0)
-     self.popularity.font =  UIFont.systemFont(ofSize: 17.0)
-     self.voteLabel.font = UIFont.systemFont(ofSize: 17.0)
- }
- else{
-     self.vote.font = UIFont.systemFont(ofSize: 19.0)
-     self.text.font = UIFont.systemFont(ofSize: 19.0)
-     self.popularityLabel.font = UIFont.systemFont(ofSize: 19.0)
-     self.popularity.font = UIFont.systemFont(ofSize: 19.0)
-     self.voteLabel.font = UIFont.systemFont(ofSize: 19.0)
- }
- */
+

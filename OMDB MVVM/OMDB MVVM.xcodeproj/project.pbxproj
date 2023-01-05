@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3006B77E29673D0B00E5346A /* UIImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3006B77D29673D0B00E5346A /* UIImageView + Extensions.swift */; };
+		3006B7802967442300E5346A /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3006B77F2967442300E5346A /* SettingsTableViewCell.swift */; };
 		301195532964A91B001C0A00 /* UILabel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195522964A91B001C0A00 /* UILabel + Extensions.swift */; };
 		301195552964A957001C0A00 /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195542964A957001C0A00 /* UIViewController + Extensions.swift */; };
 		303B6B2E2964BA85005B05B5 /* FavouritesDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B6B2D2964BA85005B05B5 /* FavouritesDetailViewModel.swift */; };
@@ -57,6 +59,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3006B77D29673D0B00E5346A /* UIImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extensions.swift"; sourceTree = "<group>"; };
+		3006B77F2967442300E5346A /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		301195522964A91B001C0A00 /* UILabel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extensions.swift"; sourceTree = "<group>"; };
 		301195542964A957001C0A00 /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
 		303B6B2D2964BA85005B05B5 /* FavouritesDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesDetailViewModel.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 		303B6B302964C974005B05B5 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				3006B77F2967442300E5346A /* SettingsTableViewCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 				301195522964A91B001C0A00 /* UILabel + Extensions.swift */,
 				301195542964A957001C0A00 /* UIViewController + Extensions.swift */,
 				303FCD6A296593EF00470229 /* String + Extensions.swift */,
+				3006B77D29673D0B00E5346A /* UIImageView + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -481,6 +487,7 @@
 			files = (
 				309AAC0E294BAF6000904374 /* DetailViewController.swift in Sources */,
 				30BDD868294C93A20083223D /* TableViewCell.swift in Sources */,
+				3006B7802967442300E5346A /* SettingsTableViewCell.swift in Sources */,
 				30BDD866294C8AE70083223D /* CoreData.xcdatamodeld in Sources */,
 				30AE6A122946187A00944829 /* MainPageViewModel.swift in Sources */,
 				306B01AF2945F9C300EC8680 /* Model.swift in Sources */,
@@ -497,6 +504,7 @@
 				30EE7D2B295F01A300C5840E /* MyCommentViewController.swift in Sources */,
 				303FCD6B296593EF00470229 /* String + Extensions.swift in Sources */,
 				306B01AD2945F9BB00EC8680 /* WebService.swift in Sources */,
+				3006B77E29673D0B00E5346A /* UIImageView + Extensions.swift in Sources */,
 				309AAC10294BAF8000904374 /* DetailViewModel.swift in Sources */,
 				30AB6925294B8B9600910642 /* FavouritesViewController.swift in Sources */,
 				306B01712945F90400EC8680 /* SceneDelegate.swift in Sources */,

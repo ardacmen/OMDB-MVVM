@@ -7,23 +7,32 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+   
+    @IBOutlet weak var darkModeEmojiLabel: UILabel!
+    
 
     
     let settingsViewModel = SettingsViewModel()
     
+    @IBOutlet weak var settingsTableView: UITableView!
     @IBOutlet weak var darkModeSwitch: UISwitch!
-  
     
 
     
     
     override func viewDidLoad() {
+       
+        
+        
         super.viewDidLoad()
         configure()
-        
+        settingsTableView.delegate = self
+        settingsTableView.dataSource = self
+        settingsViewModel.addValuesForArrays()
         if UserDefaults.standard.bool(forKey: "darkMode") == true {
             darkModeSwitch.isOn = true
+        
         }
         else
         {
@@ -42,12 +51,42 @@ class SettingsViewController: UIViewController {
         {
             overrideUserInterfaceStyle = .light
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+            darkModeEmojiLabel.addTrailing(image: UIImage(systemName: "eyes.inverse")!, text: "")
         }else{
+            darkModeEmojiLabel.addTrailing(image: UIImage(systemName: "eyes")!.withTintColor(.white), text: "")
             overrideUserInterfaceStyle = .dark
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         }
+        settingsTableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return settingsViewModel.nameArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SettingsTableViewCell
+        
+        
+        cell.nameLabel.text = settingsViewModel.nameArray[indexPath.row]
+        
+        if UserDefaults.standard.bool(forKey: "darkMode") == true
+        {
+            print(UserDefaults.standard.bool(forKey: "darkMode"))
+            cell.nameLabelsEmoji.addTrailing(image: UIImage(systemName: settingsViewModel.nameArrayEmoji[indexPath.row])!.withTintColor(.white) , text: "")
+        }
+        else
+        {
+            print(UserDefaults.standard.bool(forKey: "darkMode"))
+            cell.nameLabelsEmoji.addTrailing(image: UIImage(systemName: settingsViewModel.nameArrayEmoji[indexPath.row])!.withTintColor(.black), text: "")
+        }
+       
+        
+        return cell
     }
 }
+
+
 
 
 

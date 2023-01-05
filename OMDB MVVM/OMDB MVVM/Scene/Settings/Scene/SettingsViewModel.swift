@@ -14,6 +14,21 @@ import UIKit
 final class  SettingsViewModel
 {
     let mainPageViewController = MainPageViewController()
+    var nameArray = [String]()
+    var nameArrayEmoji = [String]()
+    
+    
+    func addValuesForArrays()
+    {
+        nameArray.append("Language")
+        nameArray.append("Font Size Selector")
+        nameArray.append("Delete All Data")
+        
+        nameArrayEmoji.append("book.fill")
+        nameArrayEmoji.append("trash.fill")
+        nameArrayEmoji.append("textformat.size")
+        
+    }
     
     func darkModeSwitchChecker(darkModeSwitch : UISwitch)
     {
