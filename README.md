@@ -4,6 +4,16 @@ OMDB MVVM is an iOS app that uses the [OMDB API](http://www.omdbapi.com/) to sea
 
 In addition to these features, OMDB MVVM includes a sorting system that uses the [bubble sort](https://en.wikipedia.org/wiki/Bubble_sort) algorithm to allow users to sort their search results by various criteria.
 
+## Techs
+- UISheetPresentationController
+- MVVM
+- UiKit
+- Alamofire
+- Kingfisher
+- HTTP
+- RESTful API
+- CollectionViewCell and TableViewCell
+
 ## Features
 
 - Search for movies and TV shows by title
@@ -20,7 +30,7 @@ In addition to these features, OMDB MVVM includes a sorting system that uses the
 
 ## Requirements
 
-- iOS 14.0 or later
+- iOS 15.0 or later
 - Xcode 12 or later
 
 ## Installation
