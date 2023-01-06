@@ -41,6 +41,10 @@ class FavouritesViewController: UIViewController {
         }else{
             overrideUserInterfaceStyle  = .light
         }
+        
+    
+        
+        
     }
     
     

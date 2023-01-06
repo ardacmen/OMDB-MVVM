@@ -128,8 +128,12 @@ extension DetailViewController
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         }
         
-        
-        
+   
+        voteLabel.font  = UIFont(name: voteLabel.font!.fontName, size: CGFloat(detailViewModel.fontSizeReturner()))
+        popularityLabel.font  = UIFont(name: voteLabel.font!.fontName, size: CGFloat(detailViewModel.fontSizeReturner()))
+        vote.font  = UIFont(name: voteLabel.font!.fontName, size: CGFloat(detailViewModel.fontSizeReturner()))
+        text.font  = UIFont(name: voteLabel.font!.fontName, size: CGFloat(detailViewModel.fontSizeReturner()))
+        popularity.font  = UIFont(name: voteLabel.font!.fontName, size: CGFloat(detailViewModel.fontSizeReturner()))
         
         self.voteLabel.layer.masksToBounds = true
         self.voteLabel.layer.cornerRadius = CGRectGetWidth(self.voteLabel.frame)/2

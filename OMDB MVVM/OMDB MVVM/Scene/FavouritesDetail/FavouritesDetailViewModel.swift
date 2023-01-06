@@ -43,4 +43,11 @@ final class FavouritesDetailViewModel
            return .green
         }
     }
+    
+    func fontSizeReturner() -> Int
+    {
+        return UserDefaults.standard.integer(forKey: "font")
+    }
+    
+    
 }

@@ -18,6 +18,10 @@ final class DetailViewModel
     var result = [Result]()
     let service = WebService()
     
+    func fontSizeReturner() -> Int
+    {
+        return UserDefaults.standard.integer(forKey: "font")
+    }
     
     func fetchData( completion: @escaping (Bool) -> Void)
     {

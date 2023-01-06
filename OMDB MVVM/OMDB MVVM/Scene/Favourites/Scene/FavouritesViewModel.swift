@@ -136,6 +136,12 @@ final class FavouritesViewModel
     }
     
     
+    func fontSizeReturner() -> Int
+    {
+        return UserDefaults.standard.integer(forKey: "font")
+    }
+    
+    
     func getDataForCheckArray(){
         
         

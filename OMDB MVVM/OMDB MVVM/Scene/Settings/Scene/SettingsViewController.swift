@@ -60,6 +60,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             overrideUserInterfaceStyle = .dark
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         }
+        
+        
+        
         settingsTableView.reloadData()
     }
     
@@ -158,26 +161,3 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
 
 
-/*
- let alert = UIAlertController(title: "Select Font Size", message: "Please Select an Option", preferredStyle: .actionSheet)
-    
-    alert.addAction(UIAlertAction(title: "Small (15px)", style: .default , handler:{ (UIAlertAction)in
-        settingsViewModel.smallFont()
-        self.configure()
-    }))
-    
-    alert.addAction(UIAlertAction(title: "Medium (17px)", style: .default , handler:{ (UIAlertAction)in
-        settingsViewModel.medFont()
-        self.configure()
-    }))
-
-    alert.addAction(UIAlertAction(title: "Large (19px)", style: .default , handler:{ (UIAlertAction)in
-        settingsViewModel.largeFont()
-        self.configure()
-    }))
-   alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:{ (UIAlertAction)in
-           
-   }))
-    
-   present(alert, animated: true, completion: {})
- */

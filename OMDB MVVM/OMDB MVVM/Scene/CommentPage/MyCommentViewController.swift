@@ -71,6 +71,13 @@ extension MyCommentViewController
             myCommentTextField.layer.borderColor = CGColor(red: 255, green: 255 , blue: 255, alpha: 1)
         }
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
+        
+        myCommentTextField.font =   UIFont(name: myCommentTextField.font!.fontName, size: CGFloat(myCommentViewModel.fontSizeReturner()))
+        yourCommentLabel.font =  UIFont(name: yourCommentLabel.font!.fontName, size: CGFloat(myCommentViewModel.fontSizeReturner()))
+        yourVoteLabel.font =  UIFont(name: yourVoteLabel.font!.fontName, size: CGFloat(myCommentViewModel.fontSizeReturner()))
+        yourVoteTextField.font =  UIFont(name: yourVoteTextField.font!.fontName, size: CGFloat(myCommentViewModel.fontSizeReturner()))
+        
+        
     }
 }
 

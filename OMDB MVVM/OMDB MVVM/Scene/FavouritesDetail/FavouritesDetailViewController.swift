@@ -65,6 +65,12 @@ class FavouritesDetailViewController: UIViewController {
         
         self.popularityLabel.backgroundColor = favouritesDetailViewModel.returnPopularityColor(popularity: self.takenPopularity)
         
+        
+        voteDesc.font = UIFont(name: voteDesc.font.fontName, size: CGFloat(favouritesDetailViewModel.fontSizeReturner()))
+        popularitDesc.font = UIFont(name: popularitDesc.font.fontName, size: CGFloat(favouritesDetailViewModel.fontSizeReturner()))
+        vote.font = UIFont(name: vote.font.fontName, size: CGFloat(favouritesDetailViewModel.fontSizeReturner()))
+        popularityLabel.font = UIFont(name: popularityLabel.font.fontName, size: CGFloat(favouritesDetailViewModel.fontSizeReturner()))
+        
     }
     
     @IBAction func addCommentClicked(_ sender: Any) {

@@ -153,6 +153,12 @@ final class  MyCommentViewModel
         }
     }
     
+    func fontSizeReturner() -> Int
+    {
+        return UserDefaults.standard.integer(forKey: "font")
+    }
+    
+    
     func checkAndDelete(checkName : String)
     {
         getData()
