@@ -267,10 +267,10 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oeH-b2-jMa">
                                 <rect key="frame" x="16" y="111" width="361" height="32"/>
                                 <segments>
-                                    <segment title="VoteHL"/>
-                                    <segment title="VoteLH"/>
-                                    <segment title="PopularityHL"/>
-                                    <segment title="PopularityLH"/>
+                                    <segment title="Vote ↑"/>
+                                    <segment title="Vote ↓"/>
+                                    <segment title="Popularity ↑"/>
+                                    <segment title="Popularity ↓"/>
                                 </segments>
                             </segmentedControl>
                         </subviews>

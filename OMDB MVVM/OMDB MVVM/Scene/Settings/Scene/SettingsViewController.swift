@@ -85,9 +85,72 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.nameLabelsEmoji.addTrailing(image: UIImage(systemName: settingsViewModel.nameArrayEmoji[indexPath.row])!.withTintColor(.black), text: "")
         }
        
-        
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0
+        {
+            
+            let alert = UIAlertController(title: "Select Language", message: "", preferredStyle: .actionSheet)
+            
+            alert.addAction(UIAlertAction(title: "English", style: .default , handler:{ [self] (UIAlertAction)in
+                   self.configure()
+               }))
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:{ (UIAlertAction)in
+                    
+            }))
+            
+            present(alert, animated: true, completion: {})
+            
+        }
+        else if indexPath.row  == 1
+        {
+            let alert = UIAlertController(title: "Select Font Size", message: "Please Select an Option", preferredStyle: .actionSheet)
+               
+            alert.addAction(UIAlertAction(title: "Small (15px)", style: .default , handler:{ [self] (UIAlertAction)in
+                   settingsViewModel.smallFont()
+                   self.configure()
+               }))
+               
+            alert.addAction(UIAlertAction(title: "Medium (17px)", style: .default , handler:{ [self] (UIAlertAction)in
+                   settingsViewModel.medFont()
+                   self.configure()
+               }))
+
+            alert.addAction(UIAlertAction(title: "Large (19px)", style: .default , handler:{ [self] (UIAlertAction)in
+                   settingsViewModel.largeFont()
+                   self.configure()
+               }))
+            
+              alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:{ (UIAlertAction)in
+                      
+              }))
+               
+              present(alert, animated: true, completion: {})
+        }
+        else
+        {
+            let alert = UIAlertController(title: "Are You Sure?", message: "If you want to delete All Data, press yes", preferredStyle: .actionSheet)
+            
+          
+            alert.addAction(UIAlertAction(title: "Yes", style: .default , handler:{ [self] (UIAlertAction)in
+                settingsViewModel.deleteAllData()
+               }))
+    
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:{ (UIAlertAction)in
+                    
+            }))
+            
+            present(alert, animated: true, completion: {})
+        }
+    }
+    
+    
+  
+    
+     
 }
 
 

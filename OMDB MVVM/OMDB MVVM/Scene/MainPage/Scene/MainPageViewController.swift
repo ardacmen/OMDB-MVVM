@@ -27,7 +27,8 @@ class MainPageViewController: UIViewController{
         configureView()
         collectionView.delegate = self
         collectionView.dataSource = self
-        // scrollView.delegate = self - it is set on the storyboard.
+        
+          
           mainPageViewModel.getMoviesData(completion: { isFetched in
               DispatchQueue.main.async {  [self] in
                   self.collectionView.reloadData()
