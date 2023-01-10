@@ -20,18 +20,20 @@ final class  SettingsViewModel
     
     func addValuesForArrays()
     {
-        nameArray.append("Language")
+     //   nameArray.append("Language")
         nameArray.append("Font Size Selector")
         nameArray.append("Delete All Data")
         
-        nameArrayEmoji.append("book.fill")
-        nameArrayEmoji.append("trash.fill")
+     //   nameArrayEmoji.append("book.fill")
         nameArrayEmoji.append("textformat.size")
+        nameArrayEmoji.append("trash.fill")
         
     }
     
     func darkModeSwitchChecker(darkModeSwitch : UISwitch)
     {
+        
+        
         if darkModeSwitch.isOn == true
         {
             UserDefaults.standard.set(true, forKey: "darkMode")
@@ -40,6 +42,8 @@ final class  SettingsViewModel
         {
             UserDefaults.standard.set(false, forKey: "darkMode")
         }
+        
+        
     }
     
     func deleteAllData()   {

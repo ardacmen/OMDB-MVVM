@@ -23,8 +23,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
        
-        
-        
         super.viewDidLoad()
         configure()
         settingsTableView.delegate = self
@@ -32,15 +30,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         settingsViewModel.addValuesForArrays()
         sheetPresentationController?.detents = [.medium()]
                sheetPresentationController?.preferredCornerRadius = 24
-
+        darkModeSwitch.isOn  =  UserDefaults.standard.bool(forKey: "darkMode")
         
-        if UserDefaults.standard.bool(forKey: "darkMode") == true {
-            darkModeSwitch.isOn = true
-        }
-        else
-        {
-            darkModeSwitch.isOn = false
-        }
     }
      
     @IBAction func darkModeSwitchChanged(_ sender: Any) {
@@ -94,7 +85,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0
         {
-            
+            /*
             let alert = UIAlertController(title: "Select Language", message: "", preferredStyle: .actionSheet)
             
             alert.addAction(UIAlertAction(title: "English", style: .default , handler:{ [self] (UIAlertAction)in
@@ -106,10 +97,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             }))
             
             present(alert, animated: true, completion: {})
-            
-        }
-        else if indexPath.row  == 1
-        {
+            */
             let alert = UIAlertController(title: "Select Font Size", message: "Please Select an Option", preferredStyle: .actionSheet)
                
             alert.addAction(UIAlertAction(title: "Small (15px)", style: .default , handler:{ [self] (UIAlertAction)in
@@ -132,9 +120,35 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
               }))
                
               present(alert, animated: true, completion: {})
+            
         }
         else
         {
+            /*
+             let alert = UIAlertController(title: "Select Font Size", message: "Please Select an Option", preferredStyle: .actionSheet)
+                
+             alert.addAction(UIAlertAction(title: "Small (15px)", style: .default , handler:{ [self] (UIAlertAction)in
+                    settingsViewModel.smallFont()
+                    self.configure()
+                }))
+                
+             alert.addAction(UIAlertAction(title: "Medium (17px)", style: .default , handler:{ [self] (UIAlertAction)in
+                    settingsViewModel.medFont()
+                    self.configure()
+                }))
+
+             alert.addAction(UIAlertAction(title: "Large (19px)", style: .default , handler:{ [self] (UIAlertAction)in
+                    settingsViewModel.largeFont()
+                    self.configure()
+                }))
+             
+               alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:{ (UIAlertAction)in
+                       
+               }))
+                
+               present(alert, animated: true, completion: {})
+             */
+          
             let alert = UIAlertController(title: "Are You Sure?", message: "If you want to delete All Data, press yes", preferredStyle: .actionSheet)
             
           
@@ -148,6 +162,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
             present(alert, animated: true, completion: {})
         }
+       
     }
     
     

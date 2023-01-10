@@ -22,11 +22,6 @@ final class  MainPageViewModel
     
     
     
-    func darkMode()
-    {
-        
-       
-    }
     
     func updateSearchResult(text : String)
     {

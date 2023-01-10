@@ -71,7 +71,7 @@ class MainPageViewController: UIViewController{
         if UserDefaults.standard.bool(forKey: "darkMode") == true
         {
             overrideUserInterfaceStyle = .dark
-            navigationItem.rightBarButtonItem?.tintColor = .white
+            navigationItem.rightBarButtonItem?.tintColor  = .white
             navigationItem.leftBarButtonItem?.tintColor = .white
         }else{
             overrideUserInterfaceStyle = .light

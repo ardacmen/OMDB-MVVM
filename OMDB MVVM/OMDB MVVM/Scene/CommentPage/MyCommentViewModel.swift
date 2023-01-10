@@ -27,7 +27,7 @@ final class  MyCommentViewModel
         }
         else
         {
-           var newText = yourVoteTextField.doubleValue
+           let newText = yourVoteTextField.doubleValue
             
             if newText > 10 && newText < 0
             {
